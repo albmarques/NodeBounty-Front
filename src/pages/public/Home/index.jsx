@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap'
 
-export function HomePublic() {
+export function HomePublica() {
   return (
     <div>
       Home Pública <Button>Botão teste</Button>
