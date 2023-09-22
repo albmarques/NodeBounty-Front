@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom'
 
-import Logo from '@assets/Logo.svg'
+import { Header } from '@components/Header'
+import { Footer } from '@components/Footer'
 
 export function DefaultLayout() {
   return (
     <>
-      <header>Header <img src={Logo} alt="Logo da Node Bounty"/></header>
+      <Header />
       <Outlet />
-      <footer>Footer</footer>
+      <Footer />
     </>
   )
 }
