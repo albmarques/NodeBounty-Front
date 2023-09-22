@@ -13,7 +13,7 @@
 }
 
 .intro h1 {
-  font-size: 3.75rem;
+  font-size: 2.5rem;
   line-height: 1.1;
   font-weight: 800;
   margin-bottom: 3.75rem;
@@ -21,4 +21,17 @@
 
 .intro div img {
   max-width: 12.5rem;
+}
+
+@media (max-width: 800px) {
+  .intro {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .intro h1 {
+    text-align: center;
+  }
+  .intro div img {
+    display: none;
+  }
 }
