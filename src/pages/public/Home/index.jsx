@@ -3,7 +3,9 @@ import LogoDecorator from '@assets/logo-decorator.png'
 import ExchangeIcon from '@assets/currency-exchange.svg'
 import MoneyIcon from '@assets/money.svg'
 import MoneyBagIcon from '@assets/money-bag.svg'
+import CardImage from '@assets/card.png'
 
+import { Button } from '@components/Button'
 import styles from './styles.module.css'
 
 export function HomePublica() {
@@ -42,6 +44,15 @@ export function HomePublica() {
             <strong>Simulador de CDI</strong>         
           </div>
         </div>
+      </div>
+
+      <div className={styles.card}>
+        <div>
+          <h2>Conta corrente, cartão e investimentos</h2>
+          <p>Para acompanhar e apoiar sua ascensão onde estiver.</p>
+          <Button title="Abra sua conta" type="secondary" />
+        </div>
+        <img src={CardImage} alt="Cartão fícticio Node Bounty" />
       </div>
     </main>
   )

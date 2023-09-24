@@ -111,3 +111,40 @@
 }
 
 /* Cartão */
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  justify-items: center;
+  padding: 3.75rem 0;
+}
+.card h2 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+.card p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #9FB7BF
+}
+.card img {
+  max-width: 27.5rem;
+}
+@media (max-width: 800px) {
+  .card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .card img {
+    grid-row: 1;
+  }
+  .card > div {
+    text-align: center;
+  }
+  .card > div button {
+    margin: auto;
+  }
+}
