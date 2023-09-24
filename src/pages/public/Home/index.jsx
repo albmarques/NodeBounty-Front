@@ -52,7 +52,9 @@ export function HomePublica() {
           <p>Para acompanhar e apoiar sua ascensão onde estiver.</p>
           <Button title="Abra sua conta" type="secondary" />
         </div>
-        <img src={CardImage} alt="Cartão fícticio Node Bounty" />
+        <div className={styles.cardImage}>
+          <img src={CardImage} alt="Cartão fícticio Node Bounty" />
+        </div>
       </div>
     </main>
   )
