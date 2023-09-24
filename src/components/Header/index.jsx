@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import { List } from 'phosphor-react'
+
 import Logo from '@assets/Logo.svg'
 import styles from './styles.module.css'
 
@@ -13,7 +16,30 @@ export function Header() {
           <Link to="/">Sobre</Link>
           <Link to="/">Abrir conta</Link>
           <Link to="/">Acesso</Link>
-        </nav>        
+
+          <DropdownMenu.Root modal={false}>
+            <DropdownMenu.Trigger className={styles.hamburguerMenu}>
+              <List size={32} />
+            </DropdownMenu.Trigger>
+
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content className={styles.dropdownMenuContent} sideOffset={4}>
+                <DropdownMenu.Item>
+                  <Link to="/">Node Invest +</Link>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item>
+                  <Link to="/">Sobre</Link>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item>
+                  <Link to="/">Abrir conta</Link>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item>
+                  <Link to="/">Acesso</Link>
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        </nav>
       </div>
     </header>
   )
