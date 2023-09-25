@@ -4,6 +4,9 @@ import ExchangeIcon from '@assets/currency-exchange.svg'
 import MoneyIcon from '@assets/money.svg'
 import MoneyBagIcon from '@assets/money-bag.svg'
 import CardImage from '@assets/card.png'
+import FATLogo from '@assets/fundacaoFAT.png'
+import BancoBrasilLogo from '@assets/bancoBrasil.png'
+import FATECLogo from '@assets/fatec.png'
 
 import { Button } from '@components/Button'
 import styles from './styles.module.css'
@@ -54,6 +57,21 @@ export function HomePublica() {
         </div>
         <div className={styles.cardImage}>
           <img src={CardImage} alt="Cartão fícticio Node Bounty" />
+        </div>
+      </div>
+
+      <div className={styles.sponsor}>
+        <h2>Apoio</h2>
+        <div>
+          <div>
+            <img src={FATLogo} alt="Logo fundação FAT" />
+          </div>
+          <div>
+            <img src={BancoBrasilLogo} alt="Logo Banco do Brasil" />
+          </div>
+          <div>
+            <img src={FATECLogo} alt="Logo da FATEC Zona Leste" />
+          </div>
         </div>
       </div>
     </main>

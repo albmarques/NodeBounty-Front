@@ -148,3 +148,23 @@
     margin: auto;
   }
 }
+
+/* Apoio */
+.sponsor {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 3.75rem 0;
+}
+.sponsor > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
+  justify-items: center;
+}
+.sponsor > div > div {
+  max-width: 13.75rem;
+}
