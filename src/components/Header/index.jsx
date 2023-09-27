@@ -9,12 +9,14 @@ export function Header() {
   return (
     <header className={styles.wrapper}>
       <div className={styles.container}>
-        <img src={Logo} alt="Logo do Node Bounty" />
+        <Link to="/">
+          <img src={Logo} alt="Logo do Node Bounty" />
+        </Link>
 
         <nav className={styles.nav}>
           <Link to="/">Node Invest +</Link>
           <Link to="/">Sobre</Link>
-          <Link to="/">Abrir conta</Link>
+          <Link to="/cadastro">Abrir conta</Link>
           <Link to="/">Acesso</Link>
 
           <DropdownMenu.Root modal={false}>
@@ -31,7 +33,7 @@ export function Header() {
                   <Link to="/">Sobre</Link>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
-                  <Link to="/">Abrir conta</Link>
+                  <Link to="/cadastro">Abrir conta</Link>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
                   <Link to="/">Acesso</Link>
