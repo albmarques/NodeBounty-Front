@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { List } from 'phosphor-react'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import Logo from '@assets/logo-preta.svg'
 import styles from './styles.module.css'

@@ -1,0 +1,14 @@
+import styles from './styles.module.css'
+
+export function Input({label, icon, errors, ...rest}) {
+    return (
+        <label className={styles.container}>
+            {label}
+            <div>
+                <input {...rest} style={errors && {borderBottomColor: 'red'}} />
+                {icon && icon}
+            </div>
+            {errors && <p className={styles.errorMessage}>{errors}</p>}
+        </label>
+    )
+}

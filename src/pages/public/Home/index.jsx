@@ -53,7 +53,7 @@ export function HomePublica() {
         <div>
           <h2>Conta corrente, cartão e investimentos</h2>
           <p>Para acompanhar e apoiar sua ascensão onde estiver.</p>
-          <Button title="Abra sua conta" type="secondary" />
+          <Button titulo="Abra sua conta" tipo="secundario" />
         </div>
         <div className={styles.cardImage}>
           <img src={CardImage} alt="Cartão fícticio Node Bounty" />

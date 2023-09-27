@@ -1,12 +1,12 @@
 import styles from './styles.module.css'
 
-export function Button({type, title, ...rest}) {
+export function Button({tipo, titulo, ...rest}) {
   return (
     <button className={
-      `${styles.button} ${type === 'primary' ? styles.buttonPrimary : styles.buttonSecondary}`}
+      `${styles.button} ${tipo === 'primario' ? styles.buttonPrimary : styles.buttonSecondary}`}
       {...rest}
     >
-      {title}
+      {titulo}
     </button>
   )
 }
