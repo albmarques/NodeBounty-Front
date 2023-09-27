@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { List } from 'phosphor-react'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
@@ -14,10 +14,10 @@ export function Header() {
         </Link>
 
         <nav className={styles.nav}>
-          <Link to="/">Node Invest +</Link>
-          <Link to="/">Sobre</Link>
-          <Link to="/cadastro">Abrir conta</Link>
-          <Link to="/">Acesso</Link>
+          <NavLink to="/">Node Invest +</NavLink>
+          <NavLink to="/">Sobre</NavLink>
+          <NavLink to="/cadastro" styl>Abrir conta</NavLink>
+          <NavLink to="/">Acesso</NavLink>
 
           <DropdownMenu.Root modal={false}>
             <DropdownMenu.Trigger className={styles.hamburguerMenu}>
@@ -27,16 +27,16 @@ export function Header() {
             <DropdownMenu.Portal>
               <DropdownMenu.Content className={styles.dropdownMenuContent} sideOffset={4}>
                 <DropdownMenu.Item>
-                  <Link to="/">Node Invest +</Link>
+                  <NavLink to="/">Node Invest +</NavLink>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
-                  <Link to="/">Sobre</Link>
+                  <NavLink to="/">Sobre</NavLink>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
-                  <Link to="/cadastro">Abrir conta</Link>
+                  <NavLink to="/cadastro">Abrir conta</NavLink>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
-                  <Link to="/">Acesso</Link>
+                  <NavLink to="/">Acesso</NavLink>
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Portal>

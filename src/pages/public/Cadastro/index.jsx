@@ -40,14 +40,13 @@ export function Cadastro() {
                 <div>
                     <Controller
                         name="nome"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Nome Completo"
                                 type="text"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.nome?.message}
                             />
                         )}
@@ -55,14 +54,13 @@ export function Cadastro() {
                     />
                     <Controller
                         name="dataNascimento"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Data de Nascimento"
                                 type="text"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.dataNascimento?.message}
                             />
                         )}
@@ -70,14 +68,13 @@ export function Cadastro() {
                     />
                     <Controller
                         name="rg"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="RG"
                                 type="text"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.rg?.message}
                             />
                         )}
@@ -85,14 +82,13 @@ export function Cadastro() {
                     />
                     <Controller
                         name="cpf"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="CPF"
                                 type="text"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.cpf?.message}
                             />
                         )}
@@ -100,14 +96,13 @@ export function Cadastro() {
                     />
                     <Controller
                         name="cep"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="CEP"
                                 type="text"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.cep?.message}
                             />
                         )}
@@ -115,14 +110,13 @@ export function Cadastro() {
                     />
                     <Controller
                         name="endereco"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Endereço"
                                 type="text"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.endereco?.message}
                             />
                         )}
@@ -132,14 +126,13 @@ export function Cadastro() {
                 <div>
                     <Controller
                         name="telefone"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Telefone"
                                 type="text"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.telefone?.message}
                             />
                         )}
@@ -147,14 +140,13 @@ export function Cadastro() {
                     />
                     <Controller
                         name="email"
-                        render={({field: { onChange, onBlur, value, ref }}) => (
+                        render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="E-mail"
                                 type="email"
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.email?.message}
                             />
                         )}
@@ -169,7 +161,6 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.senha?.message}
                             />
                         )}
@@ -184,7 +175,6 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                ref={ref}
                                 errors={errors.confirmarSenha?.message}
                             />
                         )}

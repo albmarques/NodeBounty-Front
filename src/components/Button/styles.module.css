@@ -15,6 +15,9 @@
 .buttonPrimary {
   background-color: rgba(77,77,77,.3);
 }
+.buttonPrimary:hover {
+  background-color: #07B0F2;
+}
 
 .buttonSecondary {
   background-color: transparent;
