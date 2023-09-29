@@ -1,3 +1,5 @@
+import InputMask from 'react-input-mask'
+
 import styles from './styles.module.css'
 
 export function Input({label, icon, errors, ...rest}) {
@@ -5,7 +7,7 @@ export function Input({label, icon, errors, ...rest}) {
         <label className={styles.container}>
             {label}
             <div>
-                <input {...rest} style={errors && {borderBottomColor: 'red'}} />
+                <InputMask {...rest} style={errors && {borderBottomColor: 'red'}} />
                 {icon && icon}
             </div>
             {errors && <p className={styles.errorMessage}>{errors}</p>}

@@ -16,7 +16,7 @@ export function Header() {
         <nav className={styles.nav}>
           <NavLink to="/">Node Invest +</NavLink>
           <NavLink to="/">Sobre</NavLink>
-          <NavLink to="/cadastro" styl>Abrir conta</NavLink>
+          <NavLink to="/cadastro">Abrir conta</NavLink>
           <NavLink to="/">Acesso</NavLink>
 
           <DropdownMenu.Root modal={false}>

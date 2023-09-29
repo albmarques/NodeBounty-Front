@@ -11,18 +11,22 @@
   min-width: 12.5rem;
   transition: 0.3s;
 }
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 .buttonPrimary {
   background-color: rgba(77,77,77,.3);
 }
-.buttonPrimary:hover {
+.buttonPrimary:not(:disabled):hover {
   background-color: #07B0F2;
 }
 
 .buttonSecondary {
   background-color: transparent;
 }
-.buttonSecondary:hover {
+.buttonSecondary:not(:disabled):hover {
   color: #07B0F2;
   border-color: #07B0F2;
 }
