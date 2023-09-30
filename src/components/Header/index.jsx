@@ -17,7 +17,7 @@ export function Header() {
           <NavLink to="/">Node Invest +</NavLink>
           <NavLink to="/">Sobre</NavLink>
           <NavLink to="/cadastro">Abrir conta</NavLink>
-          <NavLink to="/">Acesso</NavLink>
+          <NavLink to="/login">Acesso</NavLink>
 
           <DropdownMenu.Root modal={false}>
             <DropdownMenu.Trigger className={styles.hamburguerMenu}>
@@ -36,7 +36,7 @@ export function Header() {
                   <NavLink to="/cadastro">Abrir conta</NavLink>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
-                  <NavLink to="/">Acesso</NavLink>
+                  <NavLink to="/login">Acesso</NavLink>
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Portal>
