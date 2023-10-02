@@ -1,6 +1,7 @@
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
+import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 
 import { Input } from '@components/Input'
@@ -8,48 +9,49 @@ import { Button } from '@components/Button'
 import styles from './styles.module.css'
 
 const schema = z.object({
-    nome: z
+    Nome: z
         .string({ required_error: 'Esse campo é obrigatório' })
         .refine((name) => name.trim().length, {
             message: 'Digite um nome válido.',
         }),
-    dataNascimento: z.string({ required_error: 'Esse campo é obrigatório' }),
-    rg: z
+    DataNascimento: z.string({ required_error: 'Esse campo é obrigatório' }),
+    Rg: z
         .string({ required_error: 'Esse campo é obrigatório' })
         .refine((rg) => rg.trim().replace(/_/gi, '').length === 12, {
             message: 'Digite um RG válido'
         }),
-    cpf: z
+    Cpf: z
         .string({ required_error: 'Esse campo é obrigatório' })
         .refine((cpf) => cpf.trim().replace(/_/gi, '').length === 14, {
             message: 'Digite um CPF válido'
         }),
-    cep: z
+    Cep: z
         .string({ required_error: 'Esse campo é obrigatório' })
         .refine((cep) => cep.trim().replace(/_/gi, '').length === 9, {
             message: 'Digite um CEP válido'
         }),
-    endereco: z.string({ required_error: 'Esse campo é obrigatório' }),
-    telefone: z
+    Endereco: z.string({ required_error: 'Esse campo é obrigatório' }),
+    Numero: z.string({ required_error: 'Esse campo é obrigatório' }),
+    Telefone: z
         .string({ required_error: 'Esse campo é obrigatório' })
         .refine((telefone) => telefone.trim().replace(/_/gi, '').length === 17, {
             message: 'Digite um telefone válido'
         }),
-    email: z
+    Email: z
         .string({ required_error: 'Esse campo é obrigatório' })
         .email('E-mail inválido'),
-    senha: z
+    Senha: z
         .string({ required_error: 'Esse campo é obrigatório' })
         .min(8, 'A senha deve conter no mínimo 8 caracteres'),
-    confirmarSenha: z.string({ required_error: 'Esse campo é obrigatório' }),
+    ConfirmarSenha: z.string({ required_error: 'Esse campo é obrigatório' }),
 })
-.refine((schema) => schema.senha === schema.confirmarSenha, {
+.refine((schema) => schema.Senha === schema.ConfirmarSenha, {
     message: 'As senhas não coincidem',
-    path: ['confirmarSenha'],
+    path: ['ConfirmarSenha'],
 })
-.refine((schema) => dayjs(schema.dataNascimento).isBefore(new Date(), 'date'), {
+.refine((schema) => dayjs(schema.DataNascimento).isBefore(new Date(), 'date'), {
     message: 'A data de nascimento não pode ser superior ou igual a data atual',
-    path: ['dataNascimento']
+    path: ['DataNascimento']
 })
 
 export function Cadastro() {
@@ -61,8 +63,34 @@ export function Cadastro() {
         resolver: zodResolver(schema),
       })
 
-    function cadastrarUsuario(data) {
-        console.log(data)
+    const navigate = useNavigate()
+
+    async function cadastrarUsuario({ Nome, DataNascimento, Rg, Cpf, Cep, Endereco, Numero, Telefone, Email, Senha }) {
+        try {
+            await fetch('http://localhost:8080/clientes', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Nome,
+                    Endereco,
+                    Cep,
+                    Numero,
+                    Rg,
+                    Cpf,
+                    DataNascimento,
+                    Telefone,
+                    Email,
+                    Senha
+                })
+            })
+            navigate('/login')
+        } catch (error) {
+            alert('Um erro ocorreu, por favor tente novamente')
+            console.log(error)
+        }
     }
 
     return (
@@ -71,7 +99,7 @@ export function Cadastro() {
             <form className={styles.form} onSubmit={handleSubmit(cadastrarUsuario)}>
                 <div>
                     <Controller
-                        name="nome"
+                        name="Nome"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Nome Completo"
@@ -79,13 +107,13 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.nome?.message}
+                                errors={errors.Nome?.message}
                             />
                         )}
                         control={control}
                     />
                     <Controller
-                        name="dataNascimento"
+                        name="DataNascimento"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Data de Nascimento"
@@ -93,13 +121,13 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.dataNascimento?.message}
+                                errors={errors.DataNascimento?.message}
                             />
                         )}
                         control={control}
                     />
                     <Controller
-                        name="rg"
+                        name="Rg"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="RG"
@@ -107,7 +135,7 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.rg?.message}
+                                errors={errors.Rg?.message}
                                 placeholder="12.345.678-9"
                                 mask="99.999.999-*"
                             />
@@ -115,7 +143,7 @@ export function Cadastro() {
                         control={control}
                     />
                     <Controller
-                        name="cpf"
+                        name="Cpf"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="CPF"
@@ -123,7 +151,7 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.cpf?.message}
+                                errors={errors.Cpf?.message}
                                 placeholder="123.456.789-10"
                                 mask="999.999.999-99"
                             />
@@ -131,7 +159,7 @@ export function Cadastro() {
                         control={control}
                     />
                     <Controller
-                        name="cep"
+                        name="Cep"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="CEP"
@@ -139,7 +167,7 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.cep?.message}
+                                errors={errors.Cep?.message}
                                 placeholder="01234-567"
                                 mask="99999-999"
                             />
@@ -147,7 +175,7 @@ export function Cadastro() {
                         control={control}
                     />
                     <Controller
-                        name="endereco"
+                        name="Endereco"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Endereço"
@@ -155,7 +183,21 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.endereco?.message}
+                                errors={errors.Endereco?.message}
+                            />
+                        )}
+                        control={control}
+                    />
+                    <Controller
+                        name="Numero"
+                        render={({field: { onChange, onBlur, value }}) => (
+                            <Input
+                                label="Numero"
+                                type="text"
+                                onChange={onChange}
+                                onBlur={onBlur}
+                                value={value}
+                                errors={errors.Numero?.message}
                             />
                         )}
                         control={control}
@@ -163,7 +205,7 @@ export function Cadastro() {
                 </div>
                 <div>
                     <Controller
-                        name="telefone"
+                        name="Telefone"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Telefone"
@@ -171,7 +213,7 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.telefone?.message}
+                                errors={errors.Telefone?.message}
                                 placeholder="+55 11 99999-9999"
                                 mask="+5\5 99 99999-9999"
                             />
@@ -179,7 +221,7 @@ export function Cadastro() {
                         control={control}
                     />
                     <Controller
-                        name="email"
+                        name="Email"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="E-mail"
@@ -187,13 +229,13 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.email?.message}
+                                errors={errors.Email?.message}
                             />
                         )}
                         control={control}
                     />
                     <Controller
-                        name="senha"
+                        name="Senha"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Senha"
@@ -201,13 +243,13 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.senha?.message}
+                                errors={errors.Senha?.message}
                             />
                         )}
                         control={control}
                     />
                     <Controller
-                        name="confirmarSenha"
+                        name="ConfirmarSenha"
                         render={({field: { onChange, onBlur, value }}) => (
                             <Input
                                 label="Confirmar Senha"
@@ -215,7 +257,7 @@ export function Cadastro() {
                                 onChange={onChange}
                                 onBlur={onBlur}
                                 value={value}
-                                errors={errors.confirmarSenha?.message}
+                                errors={errors.ConfirmarSenha?.message}
                             />
                         )}
                         control={control}
