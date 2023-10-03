@@ -9,27 +9,30 @@
   line-height: 1.1;
   font-weight: 800;
   margin-bottom: 2.5rem;
-  text-align: center;
+  text-align: right;
 }
-
 .form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+.form > div {
   background-color: rgba(30, 30, 30, 0.2);
   padding: 2.5rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  max-width: 35rem;
-  margin: 0 auto;
 }
-
-.passwordRecovery {
-  color: white;
-  text-decoration: none;
-  align-self: flex-end;
-  transition: 0.3s;
-  margin-bottom: 1.25rem;
-}
-.passwordRecovery:hover {
-  color: #07b0f2;
+@media (max-width: 800px) {
+  .container h1 {
+    text-align: left;
+  }
+  .form {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .form > div {
+    width: 100%;
+  }
 }

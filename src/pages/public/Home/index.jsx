@@ -11,7 +11,7 @@ import FATECLogo from '@assets/fatec.png'
 import { Button } from '@components/Button'
 import styles from './styles.module.css'
 
-export function HomePublica() {
+export function PublicHome() {
   return (
     <main className={styles.container}>
       <div className={styles.intro}>

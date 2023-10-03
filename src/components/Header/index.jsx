@@ -3,6 +3,7 @@ import { List } from 'phosphor-react'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import Logo from '@assets/logo-preta.svg'
+
 import styles from './styles.module.css'
 
 export function Header() {
@@ -25,7 +26,10 @@ export function Header() {
             </DropdownMenu.Trigger>
 
             <DropdownMenu.Portal>
-              <DropdownMenu.Content className={styles.dropdownMenuContent} sideOffset={4}>
+              <DropdownMenu.Content
+                className={styles.dropdownMenuContent}
+                sideOffset={4}
+              >
                 <DropdownMenu.Item>
                   <NavLink to="/">Node Invest +</NavLink>
                 </DropdownMenu.Item>
