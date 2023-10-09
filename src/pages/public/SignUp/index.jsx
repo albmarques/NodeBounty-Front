@@ -4,58 +4,60 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
 import dayjs from 'dayjs'
 
+import { api } from '@lib/api'
+
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 import styles from './styles.module.css'
 
 const schema = z
   .object({
-    Nome: z
+    nome: z
       .string({ required_error: 'Esse campo é obrigatório' })
       .refine((name) => name.trim().length, {
         message: 'Digite um nome válido.',
       }),
-    DataNascimento: z.string({ required_error: 'Esse campo é obrigatório' }),
-    Rg: z
+    dataNascimento: z.string({ required_error: 'Esse campo é obrigatório' }),
+    rg: z
       .string({ required_error: 'Esse campo é obrigatório' })
       .refine((rg) => rg.trim().replace(/_/gi, '').length === 12, {
         message: 'Digite um RG válido',
       }),
-    Cpf: z
+    cpf: z
       .string({ required_error: 'Esse campo é obrigatório' })
       .refine((cpf) => cpf.trim().replace(/_/gi, '').length === 14, {
         message: 'Digite um CPF válido',
       }),
-    Cep: z
+    cep: z
       .string({ required_error: 'Esse campo é obrigatório' })
       .refine((cep) => cep.trim().replace(/_/gi, '').length === 9, {
         message: 'Digite um CEP válido',
       }),
-    Endereco: z.string({ required_error: 'Esse campo é obrigatório' }),
-    Numero: z.string({ required_error: 'Esse campo é obrigatório' }),
-    Telefone: z
+    endereco: z.string({ required_error: 'Esse campo é obrigatório' }),
+    numero: z.string({ required_error: 'Esse campo é obrigatório' }),
+    telefone: z
       .string({ required_error: 'Esse campo é obrigatório' })
       .refine((telefone) => telefone.trim().replace(/_/gi, '').length === 17, {
         message: 'Digite um telefone válido',
       }),
-    Email: z
+    email: z
       .string({ required_error: 'Esse campo é obrigatório' })
       .email('E-mail inválido'),
-    Senha: z
+    senha: z
       .string({ required_error: 'Esse campo é obrigatório' })
       .min(8, 'A senha deve conter no mínimo 8 caracteres'),
-    ConfirmarSenha: z.string({ required_error: 'Esse campo é obrigatório' }),
+    confirmarSenha: z.string({ required_error: 'Esse campo é obrigatório' }),
   })
-  .refine((schema) => schema.Senha === schema.ConfirmarSenha, {
+  .refine((schema) => schema.senha === schema.confirmarSenha, {
     message: 'As senhas não coincidem',
-    path: ['ConfirmarSenha'],
+    path: ['confirmarSenha'],
   })
   .refine(
-    (schema) => dayjs(schema.DataNascimento).isBefore(new Date(), 'date'),
+    (schema) => dayjs(schema.dataNascimento).isBefore(dayjs().subtract(18, 'years')),
     {
       message:
-        'A data de nascimento não pode ser superior ou igual a data atual',
-      path: ['DataNascimento'],
+        'O usuário deve ser maior de 18 anos para criar uma conta',
+      path: ['dataNascimento'],
     }
   )
 
@@ -70,38 +72,9 @@ export function SignUp() {
 
   const navigate = useNavigate()
 
-  async function handleCadastrarUsuario({
-    Nome,
-    DataNascimento,
-    Rg,
-    Cpf,
-    Cep,
-    Endereco,
-    Numero,
-    Telefone,
-    Email,
-    Senha,
-  }) {
+  async function handleCadastrarUsuario({_confirmarSenha, ...rest}) {
     try {
-      await fetch('http://localhost:8080/clientes', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          Nome,
-          Endereco,
-          Cep,
-          Numero,
-          Rg,
-          Cpf,
-          DataNascimento,
-          Telefone,
-          Email,
-          Senha,
-        }),
-      })
+      await api.post('/clientes', {...rest})
       navigate('/login')
     } catch (error) {
       alert('Um erro ocorreu, por favor tente novamente')
@@ -118,7 +91,7 @@ export function SignUp() {
       >
         <div>
           <Controller
-            name="Nome"
+            name="nome"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Nome Completo"
@@ -126,13 +99,13 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Nome?.message}
+                errors={errors.nome?.message}
               />
             )}
             control={control}
           />
           <Controller
-            name="DataNascimento"
+            name="dataNascimento"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Data de Nascimento"
@@ -140,13 +113,13 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.DataNascimento?.message}
+                errors={errors.dataNascimento?.message}
               />
             )}
             control={control}
           />
           <Controller
-            name="Rg"
+            name="rg"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="RG"
@@ -154,7 +127,7 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Rg?.message}
+                errors={errors.rg?.message}
                 placeholder="12.345.678-9"
                 mask="99.999.999-*"
               />
@@ -162,7 +135,7 @@ export function SignUp() {
             control={control}
           />
           <Controller
-            name="Cpf"
+            name="cpf"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="CPF"
@@ -170,7 +143,7 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Cpf?.message}
+                errors={errors.cpf?.message}
                 placeholder="123.456.789-10"
                 mask="999.999.999-99"
               />
@@ -178,7 +151,7 @@ export function SignUp() {
             control={control}
           />
           <Controller
-            name="Cep"
+            name="cep"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="CEP"
@@ -186,7 +159,7 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Cep?.message}
+                errors={errors.cep?.message}
                 placeholder="01234-567"
                 mask="99999-999"
               />
@@ -194,7 +167,7 @@ export function SignUp() {
             control={control}
           />
           <Controller
-            name="Endereco"
+            name="endereco"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Endereço"
@@ -202,13 +175,13 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Endereco?.message}
+                errors={errors.endereco?.message}
               />
             )}
             control={control}
           />
           <Controller
-            name="Numero"
+            name="numero"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Numero"
@@ -216,7 +189,7 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Numero?.message}
+                errors={errors.numero?.message}
               />
             )}
             control={control}
@@ -224,7 +197,7 @@ export function SignUp() {
         </div>
         <div>
           <Controller
-            name="Telefone"
+            name="telefone"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Telefone"
@@ -232,7 +205,7 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Telefone?.message}
+                errors={errors.telefone?.message}
                 placeholder="+55 11 99999-9999"
                 mask="+5\5 99 99999-9999"
               />
@@ -240,7 +213,7 @@ export function SignUp() {
             control={control}
           />
           <Controller
-            name="Email"
+            name="email"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="E-mail"
@@ -248,13 +221,13 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Email?.message}
+                errors={errors.email?.message}
               />
             )}
             control={control}
           />
           <Controller
-            name="Senha"
+            name="senha"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Senha"
@@ -262,13 +235,13 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.Senha?.message}
+                errors={errors.senha?.message}
               />
             )}
             control={control}
           />
           <Controller
-            name="ConfirmarSenha"
+            name="confirmarSenha"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Confirmar Senha"
@@ -276,7 +249,7 @@ export function SignUp() {
                 onChange={onChange}
                 onBlur={onBlur}
                 value={value}
-                errors={errors.ConfirmarSenha?.message}
+                errors={errors.confirmarSenha?.message}
               />
             )}
             control={control}

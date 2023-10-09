@@ -1,4 +1,7 @@
+import { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
+import { authContext } from '@contexts/AuthContext'
 
 import { DefaultLayout } from '@layouts/DefaultLayout.jsx'
 import { AuthLayout } from '@layouts/AuthLayout.jsx'
@@ -8,12 +11,12 @@ import { SignUp } from '@pages/public/SignUp'
 import { Login } from '@pages/public/Login'
 import { CreditCardPage } from '@pages/public/CreditCardPage'
 
-const usuarioEstaAutenticado = false
-
 export function Router() {
+  const { token } = useContext(authContext)
+
   return (
     <Routes>
-      {usuarioEstaAutenticado ? (
+      {token ? (
         <Route path="/" element={<AuthLayout />}>
           <Route path="/" element={<PrivateHome />} />
           {/*...Insira outras rotas privadas aqui */}

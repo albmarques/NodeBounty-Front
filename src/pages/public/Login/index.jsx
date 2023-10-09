@@ -1,7 +1,11 @@
+import { useContext } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
+
+import { api } from '@lib/api'
+import { authContext } from '@contexts/AuthContext'
 
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
@@ -24,15 +28,23 @@ export function Login() {
   })
 
   const navigate = useNavigate()
+  const { saveToken } = useContext(authContext)
 
-  function realizarLogin(data) {
-    console.log(data)
+  async function handleRealizarLogin(formData) {
+    try {
+      const { data } = await api.post('/clientes/login', formData)
+      saveToken(data.token)
+      navigate('/')
+    } catch(error) {
+      alert("Usuário ou senha inválidos")
+      console.log(error)
+    }
   }
 
   return (
     <main className={styles.container}>
       <h1>Acesso</h1>
-      <form className={styles.form} onSubmit={handleSubmit(realizarLogin)}>
+      <form className={styles.form} onSubmit={handleSubmit(handleRealizarLogin)}>
         <Controller
           name="email"
           render={({ field: { onChange, onBlur, value } }) => (
