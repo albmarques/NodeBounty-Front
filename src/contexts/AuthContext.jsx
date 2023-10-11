@@ -25,12 +25,19 @@ export function AuthContextProvider({children}) {
     setToken(token)
   }
 
+  // Método para remover o token (Fazer logout)
+  function logout() {
+    localStorage.removeItem('node-bounty')
+    setToken(null)
+  }
+
   return (
     <authContext.Provider
       value={{
         token,
         authIsLoading,
         saveToken,
+        logout,
       }}
     >
       {children}
