@@ -34,7 +34,7 @@ export function Login() {
     try {
       const { data } = await api.post('/clientes/login', formData)
       saveToken(data.token)
-      navigate('/')
+      navigate('/plans')
     } catch(error) {
       alert("Usuário ou senha inválidos")
       console.log(error)

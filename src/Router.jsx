@@ -6,6 +6,7 @@ import { authContext } from '@contexts/AuthContext'
 import { DefaultLayout } from '@layouts/DefaultLayout.jsx'
 import { AuthLayout } from '@layouts/AuthLayout.jsx'
 import { PrivateHome } from '@pages/private/Home'
+import { Plans } from '@pages/private/Plans'
 import { PublicHome } from '@pages/public/Home'
 import { SignUp } from '@pages/public/SignUp'
 import { Login } from '@pages/public/Login'
@@ -19,6 +20,7 @@ export function Router() {
       {token ? (
         <Route path="/" element={<AuthLayout />}>
           <Route path="/" element={<PrivateHome />} />
+          <Route path="/plans" element={<Plans />} />
           {/*...Insira outras rotas privadas aqui */}
         </Route>  
       ) : (

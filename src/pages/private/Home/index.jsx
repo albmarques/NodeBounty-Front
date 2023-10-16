@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 
-import { api } from '@/lib/api'
+import { api } from '@lib/api'
 import { authContext } from '@contexts/AuthContext.jsx'
 
 import { Loading } from '@components/Loading'
@@ -20,7 +20,7 @@ export function PrivateHome() {
     async function loadData() {
       try {
         setIsLoading(true)
-        const { data } = await api.get('/clientes', {
+        const { data } = await api.get('/conta', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -39,7 +39,12 @@ export function PrivateHome() {
   return (
     <div>
       <Button titulo="Sair" onClick={handleLogout} />
-      {isLoading ? <Loading /> : JSON.stringify(dados)}
+      {isLoading ? <Loading /> : (
+        <div>
+          <h1>Cliente: {dados.cliente.nome}</h1>
+          <h2>Plano: {dados.plano.idPlano}</h2>          
+        </div>
+      )}
     </div>
   )
 }
