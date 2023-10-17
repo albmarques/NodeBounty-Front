@@ -10,7 +10,7 @@ export function PrivateHome() {
   const [dados, setDados] = useState(null)
   const [isLoading, setIsLoading] = useState([])
   
-  const { token, logout } = useContext(authContext)
+  const { logout } = useContext(authContext)
 
   function handleLogout() {
     logout()
@@ -20,11 +20,7 @@ export function PrivateHome() {
     async function loadData() {
       try {
         setIsLoading(true)
-        const { data } = await api.get('/conta', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        const { data } = await api.get('/conta')
         setDados(data)
       } catch(error) {
         alert('Um erro ocorreu')

@@ -13,17 +13,13 @@ export function Plans() {
   const [selectedPlan, setSelectedPlan] = useState('Beauty')
 
   const navigate = useNavigate()
-  const { token, logout } = useContext(authContext)
+  const { logout } = useContext(authContext)
 
   useEffect(() => {
     async function retrievePlans() {
       try {
         setIsLoading(true)
-        const { data } = await api.get('/planos', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        const { data } = await api.get('/planos')
         setPlans(data)       
       }
       catch(error) {
@@ -43,15 +39,11 @@ export function Plans() {
     try {
       await api.post('/planos', {
         nomePlano: selectedPlan,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       })
       navigate('/')
     }
     catch(error) {
-      alert("Ocorreu um erro, por favor tente novamente")
+      alert('Ocorreu um erro, por favor tente novamente')
       console.log(error)
     }
   }
