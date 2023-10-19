@@ -5,6 +5,7 @@ import { authContext } from '@contexts/AuthContext.jsx'
 
 import { Loading } from '@components/Loading'
 import { Button } from '@components/Button'
+import { FormUpdate } from '@components/FormUpdate'
 
 export function PrivateHome() {
   const [dados, setDados] = useState(null)
@@ -38,7 +39,8 @@ export function PrivateHome() {
       {isLoading ? <Loading /> : (
         <div>
           <h1>Cliente: {dados.cliente.nome}</h1>
-          <h2>Plano: {dados.plano.idPlano}</h2>          
+          <h2>Plano: {dados.plano.idPlano}</h2>
+          <FormUpdate idCliente={dados.cliente.idCliente} />       
         </div>
       )}
     </div>
