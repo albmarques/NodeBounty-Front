@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
 import { api } from '@lib/api'
-import { authContext } from '@contexts/AuthContext.jsx'
 
 import { Loading } from '@components/Loading'
 import styles from './styles.module.css'
@@ -9,7 +8,6 @@ import styles from './styles.module.css'
 export function PrivateHome() {
   const [dadosConta, setDadosConta] = useState({})
   const [isLoading, setIsLoading] = useState(true)
-  const { logout } = useContext(authContext)
 
   useEffect(() => {
     async function loadAccountData() {
@@ -26,22 +24,29 @@ export function PrivateHome() {
     loadAccountData()
   }, [])
 
-  function handleLogout() {
-    logout()
-  }
-
   console.log(dadosConta)
 
   return isLoading ? (
     <Loading />
   ) : (
     <main className={styles.containerHome}>
-      <span>
-        Plano: <strong>{dadosConta.plano.idPlano}</strong>
-      </span>
-      <h1>Bem vindo, {dadosConta.cliente.nome}</h1>
-      <div>
-        <strong>Saldo: {dadosConta.saldoConta}</strong>
+      <div className={styles.userInfo}>
+        <div>
+          <p>
+            Plano: <strong>{dadosConta.plano.idPlano}</strong>
+          </p>
+          <p>Conta: {dadosConta.numeroConta}</p>
+        </div>
+        <h1>Bem vindo, {dadosConta.cliente.nome}</h1>
+      </div>
+      <div className={styles.balance}>
+        <strong>
+          Saldo:{' '}
+          {dadosConta.saldoConta.toLocaleString('default', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
+        </strong>
       </div>
     </main>
   )

@@ -1,15 +1,24 @@
+import { useContext } from 'react'
 import {
   UserCircle,
   Money,
   Question,
   CreditCard,
   ChartLineUp,
+  SignOut,
 } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
+import { authContext } from '@contexts/AuthContext.jsx'
 
 import styles from './styles.module.css'
 
 export function Sidebar() {
+  const { logout } = useContext(authContext)
+
+  function handleLogout() {
+    logout()
+  }
+
   return (
     <aside className={styles.sidebar}>
       <nav>
@@ -33,6 +42,10 @@ export function Sidebar() {
           <ChartLineUp size={32} />
           Investir
         </NavLink>
+        <button onClick={handleLogout}>
+          <SignOut size={32} />
+          Sair
+        </button>
       </nav>
     </aside>
   )

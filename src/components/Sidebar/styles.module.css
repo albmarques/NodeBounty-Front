@@ -8,7 +8,13 @@
   justify-content: space-around;
   padding: 1.25rem;
 }
-.sidebar nav a {
+.sidebar nav button {
+  border: none;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+.sidebar nav a, .sidebar nav button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -19,6 +25,6 @@
 .sidebar nav a[class="active"] {
   color: var(--blue-300);
 }
-.sidebar nav a:hover {
+.sidebar nav a:hover, .sidebar nav button:hover {
   color: var(--blue-300);
 }

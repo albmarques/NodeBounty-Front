@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import Grafo from '@assets/grafo.png'
 import LogoDecorator from '@assets/logo-decorator.png'
 import ExchangeIcon from '@assets/currency-exchange.svg'
@@ -12,6 +14,8 @@ import { Button } from '@components/Button'
 import styles from './styles.module.css'
 
 export function PublicHome() {
+  const navigate = useNavigate()
+
   return (
     <main className={styles.container}>
       <div className={styles.intro}>
@@ -58,7 +62,11 @@ export function PublicHome() {
         <div>
           <h2>Conta corrente, cartão e investimentos</h2>
           <p>Para acompanhar e apoiar sua ascensão onde estiver.</p>
-          <Button titulo="Abra sua conta" tipo="secundario" />
+          <Button
+            titulo="Abra sua conta"
+            tipo="secundario"
+            onClick={() => navigate('/cadastro')}
+          />
         </div>
         <div className={styles.cardImage}>
           <img src={CardImage} alt="Cartão fícticio Node Bounty" />
