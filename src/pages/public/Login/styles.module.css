@@ -24,12 +24,12 @@
 }
 
 .passwordRecovery {
-  color: white;
+  color: var(--white);
   text-decoration: none;
   align-self: flex-end;
   transition: 0.3s;
   margin-bottom: 1.25rem;
 }
 .passwordRecovery:hover {
-  color: #07b0f2;
+  color: var(--blue-300);
 }

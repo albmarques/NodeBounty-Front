@@ -56,7 +56,7 @@
   display: block;
   flex: 1;
   height: 2px;
-  background-color: white;
+  background-color: var(--white);
 }
 
 .benefitsList {
@@ -75,7 +75,7 @@
   align-items: center;
 }
 .benefitCard > div {
-  border: 1px solid white;
+  border: 1px solid var(--white);
   border-radius: 4px;
   height: 20rem;
   display: flex;
@@ -88,7 +88,7 @@
 .benefitCard > div > p {
   text-align: center;
   line-height: 1.5;
-  color: #9fb7bf;
+  color: var(--blue-200);
 }
 .benefitCard strong {
   font-size: 1.25rem;
@@ -128,7 +128,7 @@
 .card p {
   font-size: 1.25rem;
   line-height: 1.5;
-  color: #9fb7bf;
+  color: var(--blue-200);
 }
 .cardImage {
   max-width: 27.5rem;

@@ -19,11 +19,11 @@
 }
 .flex li {
   line-height: 1.5;
-  color: #cad8dd;
+  color: var(--blue-100);
 }
 
 .disclaimer {
-  background-color: #213238;
+  background-color: var(--blue-600);
   margin: 0;
   padding: 1.25rem 0;
   text-align: center;

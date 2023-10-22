@@ -13,9 +13,9 @@ import styles from './styles.module.css'
 
 const schema = z.object({
   email: z
-    .string({ required_error: "Esse campo é obrigatório" })
-    .email("E-mail inválido"),
-  senha: z.string({ required_error: "Esse campo é obrigatório" }),
+    .string({ required_error: 'Esse campo é obrigatório' })
+    .email('E-mail inválido'),
+  senha: z.string({ required_error: 'Esse campo é obrigatório' }),
 })
 
 export function Login() {
@@ -34,9 +34,9 @@ export function Login() {
     try {
       const { data } = await api.post('/clientes/login', formData)
       saveToken(data.token)
-      navigate('/plans')
-    } catch(error) {
-      alert("Usuário ou senha inválidos")
+      navigate('/planos')
+    } catch (error) {
+      alert('Usuário ou senha inválidos')
       console.log(error)
     }
   }
@@ -44,7 +44,10 @@ export function Login() {
   return (
     <main className={styles.container}>
       <h1>Acesso</h1>
-      <form className={styles.form} onSubmit={handleSubmit(handleRealizarLogin)}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(handleRealizarLogin)}
+      >
         <Controller
           name="email"
           render={({ field: { onChange, onBlur, value } }) => (
@@ -80,16 +83,16 @@ export function Login() {
           titulo="Entrar"
           tipo="primario"
           type="submit"
-          style={{ maxWidth: "20rem", alignSelf: "center", width: "100%" }}
+          style={{ maxWidth: '20rem', alignSelf: 'center', width: '100%' }}
           disabled={isSubmitting}
         />
         <Button
           titulo="Abra sua conta"
           tipo="primario"
           type="button"
-          style={{ maxWidth: "20rem", alignSelf: "center", width: "100%" }}
+          style={{ maxWidth: '20rem', alignSelf: 'center', width: '100%' }}
           disabled={isSubmitting}
-          onClick={() => navigate("/cadastro")}
+          onClick={() => navigate('/cadastro')}
         />
       </form>
     </main>

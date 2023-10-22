@@ -4,45 +4,45 @@ import { api } from '@lib/api'
 import { authContext } from '@contexts/AuthContext.jsx'
 
 import { Loading } from '@components/Loading'
-import { Button } from '@components/Button'
-import { FormUpdate } from '@components/FormUpdate'
+import styles from './styles.module.css'
 
 export function PrivateHome() {
-  const [dados, setDados] = useState(null)
-  const [isLoading, setIsLoading] = useState([])
-  
+  const [dadosConta, setDadosConta] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
   const { logout } = useContext(authContext)
+
+  useEffect(() => {
+    async function loadAccountData() {
+      try {
+        setIsLoading(true)
+        const { data } = await api.get('/conta')
+        setDadosConta(data)
+        setIsLoading(false)
+      } catch (error) {
+        alert('Um erro ocorreu')
+        console.log(error)
+      }
+    }
+    loadAccountData()
+  }, [])
 
   function handleLogout() {
     logout()
   }
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setIsLoading(true)
-        const { data } = await api.get('/conta')
-        setDados(data)
-      } catch(error) {
-        alert('Um erro ocorreu')
-        console.log(error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    loadData()
-  }, [])
+  console.log(dadosConta)
 
-  return (
-    <div>
-      <Button titulo="Sair" onClick={handleLogout} />
-      {isLoading ? <Loading /> : (
-        <div>
-          <h1>Cliente: {dados.cliente.nome}</h1>
-          <h2>Plano: {dados.plano.idPlano}</h2>
-          <FormUpdate idCliente={dados.cliente.idCliente} />       
-        </div>
-      )}
-    </div>
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <main className={styles.containerHome}>
+      <span>
+        Plano: <strong>{dadosConta.plano.idPlano}</strong>
+      </span>
+      <h1>Bem vindo, {dadosConta.cliente.nome}</h1>
+      <div>
+        <strong>Saldo: {dadosConta.saldoConta}</strong>
+      </div>
+    </main>
   )
 }

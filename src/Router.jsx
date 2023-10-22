@@ -20,16 +20,16 @@ export function Router() {
       {token ? (
         <Route path="/" element={<AuthLayout />}>
           <Route path="/" element={<PrivateHome />} />
-          <Route path="/plans" element={<Plans />} />
-          {/*...Insira outras rotas privadas aqui */}
-        </Route>  
+          <Route path="/planos" element={<Plans />} />
+          {/* ...Insira outras rotas privadas aqui */}
+        </Route>
       ) : (
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<PublicHome />} />
           <Route path="/cadastro" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/cartao" element={<CreditCardPage />}/>
-          {/*...Insira outras rotas públicas aqui */}
+          <Route path="/cartao" element={<CreditCardPage />} />
+          {/* ...Insira outras rotas públicas aqui */}
         </Route>
       )}
     </Routes>

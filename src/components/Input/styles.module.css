@@ -12,14 +12,14 @@
   width: 100%;
   background-color: transparent;
   border: 1px solid transparent;
-  border-bottom-color: white;
+  border-bottom-color: var(--white);
   outline: none;
   font-size: 1rem;
-  color: white;
+  color: var(--white);
   padding: 0.25rem;
 }
 .container div input:focus {
-  border: 1px solid white;
+  border: 1px solid var(--white);
 }
 
 .errorMessage {

@@ -1,3 +1,15 @@
+:root {
+  --white: #fff;
+  --black: #000;
+
+  --blue-100: #cad8dd;
+  --blue-200: #9fb7bf;
+  --blue-300: #07b0f2;
+  --blue-400: #034159;
+  --blue-500: #223840;
+  --blue-600: #213238;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,12 +17,27 @@
 }
 
 body {
-  background-color: #223840;
-  color: white;
+  background: var(--blue-500);
+  color: var(--white);
+  --webkit-font-smoothing: antialiased;
+}
+
+body, input, button, textarea {
   font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 img {
   display: block;
   max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+ul {
+  list-style: none;
 }
