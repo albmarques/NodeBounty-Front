@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { api } from '../lib/api'
 
@@ -7,6 +8,7 @@ export const authContext = createContext({})
 export function AuthContextProvider({ children }) {
   const [token, setToken] = useState(null)
   const [authIsLoading, setAuthIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   // Recuperando token do localstorage caso exista
   useEffect(() => {
@@ -33,6 +35,7 @@ export function AuthContextProvider({ children }) {
   function logout() {
     localStorage.removeItem('node-bounty')
     setToken(null)
+    navigate('/')
   }
 
   return (

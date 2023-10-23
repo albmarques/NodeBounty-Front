@@ -16,25 +16,36 @@ export function Plans() {
 
   useEffect(() => {
     async function retrievePlansData() {
+      // Verificando se o usuário possui uma conta já registrada. Caso tenha, redirecionar direto para a tela da conta
       try {
         setIsLoading(true)
-        const { data } = await api.get('/planos')
-        setPlans(data)
-        setIsLoading(false)
+        const response = await api.get('/conta')
+
+        // Usuário possui conta, redirecionar para home
+        if (response.status === 200) {
+          navigate('/')
+        }
       } catch (error) {
-        alert('Ocorreu um erro ao carregar os planos')
-        console.log(error)
-        logout()
+        // Usuário não possui conta, pegar os dados dos planos
+        try {
+          const { data } = await api.get('/planos')
+          setPlans(data)
+          setIsLoading(false)
+        } catch (error) {
+          alert('Ocorreu um erro ao carregar os planos')
+          console.log(error)
+          logout()
+        }
       }
     }
     retrievePlansData()
-  }, [logout])
+  }, [logout, navigate])
 
   async function handleSubmitPlan(e) {
     e.preventDefault()
 
     try {
-      await api.post('/planos', {
+      await api.post('/conta', {
         nomePlano: selectedPlan,
       })
       navigate('/')
