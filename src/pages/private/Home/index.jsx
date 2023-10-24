@@ -24,8 +24,6 @@ export function PrivateHome() {
     loadAccountData()
   }, [])
 
-  console.log(dadosConta)
-
   return isLoading ? (
     <Loading />
   ) : (

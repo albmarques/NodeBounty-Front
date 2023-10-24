@@ -21,6 +21,7 @@ export function Router() {
         <Route path="/" element={<AuthLayout />}>
           <Route path="/" element={<PrivateHome />} />
           <Route path="/planos" element={<Plans />} />
+          <Route path="/cartoes" element={<CreditCardPage />} />
           {/* ...Insira outras rotas privadas aqui */}
         </Route>
       ) : (
@@ -28,7 +29,6 @@ export function Router() {
           <Route path="/" element={<PublicHome />} />
           <Route path="/cadastro" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/cartao" element={<CreditCardPage />} />
           {/* ...Insira outras rotas públicas aqui */}
         </Route>
       )}
