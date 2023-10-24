@@ -1,95 +1,74 @@
 import { useState, useEffect } from 'react'
+
 import { Button } from '@components/Button'
 import { CreditCard } from '@components/CreditCard'
+import { Loading } from '@components/Loading'
 import styles from './styles.module.css'
 
-export function GerarCartao(onCartaoGerado) {
-  const url = 'http://localhost:8090/api/v1/cartoes/gerar'
-  console.log('Tentando gerar cartão...')
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json', // Se seus dados estiverem no formato JSON
-      // Outros cabeçalhos personalizados, se necessário
-    },
-    // Converte seus dados em formato JSON
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Erro na solicitação POST')
-      }
-      return response.json() // Converte a resposta em JSON
-    })
-    .then((data) => {
-      console.log('Resposta do servidor:', data)
-      window.location.reload(false)
-    })
-    .catch((error) => {
-      console.error('Erro ao fazer o POST:', error)
-    })
-}
-
-const handleCartaoGerado = () => {
-  // Após gerar um novo cartão, atualize a lista de cartões
-  consulta()
-}
-
-function DeleteButton({ id, onDelete }) {
-  const handleDelete = () => {
-    fetch(`http://localhost:8090/api/v1/cartoes/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Chama a função onDelete quando a exclusão for bem-sucedida
-          onDelete(id)
-        } else {
-          // Lidar com erros aqui
-        }
-      })
-      .catch((error) => {
-        console.error('Erro ao fazer a requisição DELETE:', error)
-      })
-  }
-
-  return <button onClick={handleDelete}>Deletar</button>
-}
+import { api } from '@lib/api.js'
 
 export function CreditCardPage() {
   const [cartoes, setCartoes] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [erro, setErro] = useState(null)
 
   useEffect(() => {
     const consulta = async () => {
+      setIsLoading(true)
       try {
-        const resposta = await fetch('http://localhost:8090/api/v1/cartoes')
-        if (!resposta.ok) {
-          throw new Error()
-        }
-        const dados = await resposta.json()
-        setCartoes(dados)
+        const { data } = await api.get('/cartoes')
+        setCartoes(data)
       } catch (error) {
+        alert('Um erro ocorreu, por favor tente novamente')
         setErro(error.message)
+        console.log(error)
+      } finally {
+        setIsLoading(false)
       }
     }
     consulta()
   }, [])
 
-  const handleDelete = (id) => {
-    // Atualiza o estado para remover o cartão com o ID correspondente
-    setCartoes((cartoes) => cartoes.filter((cartao) => cartao.idCartao !== id))
+  async function GerarCartao() {
+    console.log('Tentando gerar cartão...')
+
+    try {
+      const { data } = await api.post('/cartoes')
+      setCartoes((cartoes) => [...cartoes, data])
+    } catch (error) {
+      alert('Um erro ocorreu, por favor tente novamente')
+      setErro(error.message)
+      console.log(error)
+    }
   }
 
-  return (
+  async function deletarCartao(idCartaoDeletar) {
+    try {
+      const { data } = await api.delete(`/cartoes/${idCartaoDeletar}`)
+      setCartoes((cartoes) =>
+        cartoes.filter((cartao) => cartao.idCartao !== idCartaoDeletar),
+      )
+    } catch (error) {
+      alert('Um erro ocorreu, por favor tente novamente')
+      setErro(error.message)
+      console.log(error)
+    }
+  }
+
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="container">
       <div>
         {cartoes.map((cartao) => (
           <div key={cartao.idCartao}>
             {CreditCard(cartao)}
-            <DeleteButton id={cartao.idCartao} onDelete={handleDelete} />
+            <Button
+              id={cartao.idCartao}
+              onClick={() => deletarCartao(cartao.idCartao)}
+            >
+              Deletar Cartão
+            </Button>
           </div>
         ))}
       </div>
@@ -100,7 +79,7 @@ export function CreditCardPage() {
           <div className={styles.cartao}>
             <Button
               titulo="Gerar Cartão"
-              onClick={() => GerarCartao(handleCartaoGerado)}
+              onClick={GerarCartao}
               tipo="secundario"
             />
           </div>
@@ -110,5 +89,3 @@ export function CreditCardPage() {
     </div>
   )
 }
-
-export default CreditCardPage
