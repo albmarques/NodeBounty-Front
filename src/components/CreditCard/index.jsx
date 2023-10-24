@@ -2,11 +2,12 @@ import styles from './styles.module.css'
 
 export function CreditCard({ numeroCartao, validadeCartao, cvcCartao }) {
   return (
-    <div className={styles.cardContainer + ' container mt-5'}>
-      <div className="row justify-content-center">
-        <div className="col-lg-6 col-md-8 col-sm-10 col-12">
-          <div className={styles.cardContainer}>
-            <div className={styles.cardNumber}>
+    <div class={" container mt-5"}>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-8 col-sm-10 col-12">
+          <div class={styles.cardContainer}>
+            <div class={styles.cardNumber}>
+
               {numeroCartao.substr(0, 4) +
                 ' ' +
                 numeroCartao.substr(4, 4) +

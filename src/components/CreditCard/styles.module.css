@@ -1,5 +1,5 @@
 .cardContainer {
-  margin: 0 auto;
+  margin: auto;
   padding: 1.125rem;
   background: linear-gradient(to bottom, #808080, #4d4d4d);
   color: var(--white);

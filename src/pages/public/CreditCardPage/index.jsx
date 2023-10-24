@@ -63,12 +63,12 @@ export function CreditCardPage() {
         {cartoes.map((cartao) => (
           <div key={cartao.idCartao}>
             {CreditCard(cartao)}
+           
             <Button
               id={cartao.idCartao}
+              titulo="Deletar Cartão"
               onClick={() => deletarCartao(cartao.idCartao)}
-            >
-              Deletar Cartão
-            </Button>
+            />
           </div>
         ))}
       </div>
