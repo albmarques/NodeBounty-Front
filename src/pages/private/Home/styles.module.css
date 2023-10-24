@@ -1,0 +1,34 @@
+.containerHome {
+  max-width: 56.25rem;
+  width: 100%;
+  padding: 3.75rem 1.25rem;
+  margin: 0 auto;
+}
+
+.userInfo > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+.userInfo p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.userInfo p strong {
+  color: var(--pink-400);
+}
+.userInfo h1 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+}
+
+.balance {
+  padding: 1.25rem;
+  background-color: var(--blue-600);
+  border-radius: 8px;
+  font-size: 2rem;
+  line-height: 1.5;
+  font-weight: 800;
+}

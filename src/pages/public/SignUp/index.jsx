@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -53,12 +54,12 @@ const schema = z
     path: ['confirmarSenha'],
   })
   .refine(
-    (schema) => dayjs(schema.dataNascimento).isBefore(dayjs().subtract(18, 'years')),
+    (schema) =>
+      dayjs(schema.dataNascimento).isBefore(dayjs().subtract(18, 'years')),
     {
-      message:
-        'O usuário deve ser maior de 18 anos para criar uma conta',
+      message: 'O usuário deve ser maior de 18 anos para criar uma conta',
       path: ['dataNascimento'],
-    }
+    },
   )
 
 export function SignUp() {
@@ -72,9 +73,9 @@ export function SignUp() {
 
   const navigate = useNavigate()
 
-  async function handleCadastrarUsuario({_confirmarSenha, ...rest}) {
+  async function handleCadastrarUsuario({ _confirmarSenha, ...rest }) {
     try {
-      await api.post('/clientes', {...rest})
+      await api.post('/clientes', { ...rest })
       navigate('/login')
     } catch (error) {
       alert('Um erro ocorreu, por favor tente novamente')
@@ -258,7 +259,7 @@ export function SignUp() {
             titulo="Concluir"
             tipo="primario"
             type="submit"
-            style={{ maxWidth: "20rem", alignSelf: "center", width: "100%" }}
+            style={{ maxWidth: '20rem', alignSelf: 'center', width: '100%' }}
             disabled={isSubmitting}
           />
         </div>

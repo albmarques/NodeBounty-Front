@@ -6,6 +6,7 @@ import { authContext } from '@contexts/AuthContext'
 import { DefaultLayout } from '@layouts/DefaultLayout.jsx'
 import { AuthLayout } from '@layouts/AuthLayout.jsx'
 import { PrivateHome } from '@pages/private/Home'
+import { Plans } from '@pages/private/Plans'
 import { PublicHome } from '@pages/public/Home'
 import { SignUp } from '@pages/public/SignUp'
 import { Login } from '@pages/public/Login'
@@ -19,15 +20,16 @@ export function Router() {
       {token ? (
         <Route path="/" element={<AuthLayout />}>
           <Route path="/" element={<PrivateHome />} />
-          {/*...Insira outras rotas privadas aqui */}
-        </Route>  
+          <Route path="/planos" element={<Plans />} />
+          <Route path="/cartoes" element={<CreditCardPage />} />
+          {/* ...Insira outras rotas privadas aqui */}
+        </Route>
       ) : (
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<PublicHome />} />
           <Route path="/cadastro" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/cartao" element={<CreditCardPage />}/>
-          {/*...Insira outras rotas públicas aqui */}
+          {/* ...Insira outras rotas públicas aqui */}
         </Route>
       )}
     </Routes>

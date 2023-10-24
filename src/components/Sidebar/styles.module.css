@@ -1,0 +1,30 @@
+.sidebar {
+  background-color: var(--blue-600);
+  display: grid;
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1.25rem;
+}
+.sidebar nav button {
+  border: none;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+.sidebar nav a, .sidebar nav button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.sidebar nav a[class="active"] {
+  color: var(--blue-300);
+}
+.sidebar nav a:hover, .sidebar nav button:hover {
+  color: var(--blue-300);
+}

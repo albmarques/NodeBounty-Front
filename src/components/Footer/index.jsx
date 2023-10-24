@@ -16,18 +16,25 @@ export function Footer() {
             <li>9999-9999 (Regiões metropolitanas)</li>
             <li>0800-000-000 (Demais localidades)</li>
             <li>WhatsApp: 11 0000-0000 </li>
-            <li>(Não é preciso inserir o dígito 9 antes do número)</li>          
+            <li>(Não é preciso inserir o dígito 9 antes do número)</li>
           </ul>
           <ul>
             <li>Reclamações, sugestões e elogios: 0800-000-0000</li>
             <li>SAC - Deficiência auditiva ou de fala: 0800-000-0000</li>
-            <li>Horário de funcionamento: 24 horas por dia, 7 dias por semana</li>
+            <li>
+              Horário de funcionamento: 24 horas por dia, 7 dias por semana
+            </li>
             <li>Se não ficou satisfeito, ligue para: 0800-000-0000</li>
-            <li>Horário de funcionamento: De segunda a sexta-feira (exceto feriados), das 9h às 18h</li>       
+            <li>
+              Horário de funcionamento: De segunda a sexta-feira (exceto
+              feriados), das 9h às 18h
+            </li>
           </ul>
-        </div>        
+        </div>
       </div>
-      <p className={styles.disclaimer}>Node Bounty - Todos os direitos reservados </p>
+      <p className={styles.disclaimer}>
+        Node Bounty - Todos os direitos reservados{' '}
+      </p>
     </footer>
   )
 }

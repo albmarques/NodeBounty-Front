@@ -1,45 +1,51 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
-import { api } from '@/lib/api'
-import { authContext } from '@contexts/AuthContext.jsx'
+import { api } from '@lib/api'
 
 import { Loading } from '@components/Loading'
-import { Button } from '@components/Button'
+import styles from './styles.module.css'
 
 export function PrivateHome() {
-  const [dados, setDados] = useState(null)
-  const [isLoading, setIsLoading] = useState([])
-  
-  const { token, logout } = useContext(authContext)
-
-  function handleLogout() {
-    logout()
-  }
+  const [dadosConta, setDadosConta] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    async function loadData() {
+    async function loadAccountData() {
       try {
         setIsLoading(true)
-        const { data } = await api.get('/clientes', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        setDados(data)
-      } catch(error) {
+        const { data } = await api.get('/conta')
+        setDadosConta(data)
+        setIsLoading(false)
+      } catch (error) {
         alert('Um erro ocorreu')
         console.log(error)
-      } finally {
-        setIsLoading(false)
       }
     }
-    loadData()
+    loadAccountData()
   }, [])
 
-  return (
-    <div>
-      <Button titulo="Sair" onClick={handleLogout} />
-      {isLoading ? <Loading /> : JSON.stringify(dados)}
-    </div>
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <main className={styles.containerHome}>
+      <div className={styles.userInfo}>
+        <div>
+          <p>
+            Plano: <strong>{dadosConta.plano.idPlano}</strong>
+          </p>
+          <p>Conta: {dadosConta.numeroConta}</p>
+        </div>
+        <h1>Bem vindo, {dadosConta.cliente.nome}</h1>
+      </div>
+      <div className={styles.balance}>
+        <strong>
+          Saldo:{' '}
+          {dadosConta.saldoConta.toLocaleString('default', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
+        </strong>
+      </div>
+    </main>
   )
 }
