@@ -63,18 +63,21 @@ export function CreditCardPage() {
         {cartoes.map((cartao) => (
           <div key={cartao.idCartao}>
             {CreditCard(cartao)}
-           
+            <div class="row justify-content-center mt-1">
+              <div class="col-2 text-left">
             <Button
               id={cartao.idCartao}
               titulo="Deletar Cartão"
               onClick={() => deletarCartao(cartao.idCartao)}
             />
+             </div>
+            </div>
           </div>
         ))}
       </div>
       {erro && <p>Erro na consulta: {erro}</p>}
 
-      <div className="row justify-content-center">
+      <div className="row justify-content-center mt-1">
         <div className={'col-md-auto' + styles.cartao}>
           <div className={styles.cartao}>
             <Button
