@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import * as ToastComponent from '@radix-ui/react-toast'
 
 import styles from './styles.module.css'
 

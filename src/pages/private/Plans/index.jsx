@@ -72,8 +72,8 @@ export function Plans() {
                     <div>
                       <div>
                         <p>
-                          Acúmulo de pontos.<br></br> Ausência de taxas de manutenção e
-                          anuidade do cartão.
+                          Acúmulo de pontos.<br></br> Ausência de taxas de
+                          manutenção e anuidade do cartão.
                         </p>
                       </div>
                     </div>
@@ -82,9 +82,16 @@ export function Plans() {
                         <div className={styles.benefitCard}>
                           <div>
                             <strong>Plano {plans[0].idPlano}</strong>
-                            <p>Cashback exclusivo de <b>{plans[0].porcentagemCashback}%</b>  para produtos de beleza.</p><p>
+                            <p>
+                              Cashback exclusivo de{' '}
+                              <b>{plans[0].porcentagemCashback}%</b> para
+                              produtos de beleza.
+                            </p>
+                            <p>
                               Com desconto nas parcerias:
-                              <p><b>{plans[0].parcerias}</b></p>
+                              <p>
+                                <b>{plans[0].parcerias}</b>
+                              </p>
                             </p>
                           </div>
                         </div>
@@ -93,9 +100,16 @@ export function Plans() {
                         <div className={styles.benefitCard}>
                           <div>
                             <strong>Plano {plans[1].idPlano}</strong>
-                            <p>Cashback exclusivo de <b>{plans[1].porcentagemCashback}%</b>  para produtos de tech.</p><p>
+                            <p>
+                              Cashback exclusivo de{' '}
+                              <b>{plans[1].porcentagemCashback}%</b> para
+                              produtos de tech.
+                            </p>
+                            <p>
                               Com desconto nas parcerias:
-                              <p><b>{plans[1].parcerias}</b></p>
+                              <p>
+                                <b>{plans[1].parcerias}</b>
+                              </p>
                             </p>
                           </div>
                         </div>
@@ -104,9 +118,16 @@ export function Plans() {
                         <div className={styles.benefitCard}>
                           <div>
                             <strong>Plano {plans[2].idPlano}</strong>
-                            <p>Cashback exclusivo de <b>{plans[2].porcentagemCashback}%</b>  para produtos de esporte e saúde.</p><p>
+                            <p>
+                              Cashback exclusivo de{' '}
+                              <b>{plans[2].porcentagemCashback}%</b> para
+                              produtos de esporte e saúde.
+                            </p>
+                            <p>
                               Com desconto nas parcerias:
-                              <p><b>{plans[2].parcerias}</b></p>
+                              <p>
+                                <b>{plans[2].parcerias}</b>
+                              </p>
                             </p>
                           </div>
                         </div>
@@ -114,7 +135,9 @@ export function Plans() {
                     </div>
                   </div>
                 </div>
-                <div><p></p> </div>
+                <div>
+                  <p></p>{' '}
+                </div>
                 <div className="row justify-content-center">
                   <select
                     name="nomePlano"
@@ -135,7 +158,6 @@ export function Plans() {
             </div>
           </div>
         </div>
-
       </form>
     </main>
   )

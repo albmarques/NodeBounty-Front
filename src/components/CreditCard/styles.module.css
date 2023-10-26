@@ -9,29 +9,19 @@
 }
 
 .cardNumber {
-  font-family: 'Inter';
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 800;
   margin-bottom: 2rem;
 }
 
 .expirationCvv {
-  font-family: 'Inter';
   display: flex;
   justify-content: space-between;
 }
 
 
 .expirationCvv div {
-  font-family: 'Inter';
   font-size: 1.5rem;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('../../assets/font-inter/Inter-VariableFont_slnt,wght.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
 }
 
 .cartao{
