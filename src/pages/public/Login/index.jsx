@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { api } from '@lib/api'
 import { authContext } from '@contexts/AuthContext'
+import { useToast } from '@hooks/useToast'
+import { AppError } from '@utils/AppError'
 
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
@@ -29,6 +31,7 @@ export function Login() {
 
   const navigate = useNavigate()
   const { saveToken } = useContext(authContext)
+  const { showToast, ToastComponents } = useToast()
 
   async function handleRealizarLogin(formData) {
     try {
@@ -36,8 +39,13 @@ export function Login() {
       saveToken(data.token)
       navigate('/planos')
     } catch (error) {
-      alert('Usuário ou senha inválidos')
-      console.log(error)
+      const isAppError = error instanceof AppError
+      const title = isAppError ? error.message : 'Erro no servidor.'
+      const description = isAppError
+        ? 'Verifique os dados e tente novamente.'
+        : 'Tente novamente mais tarde.'
+
+      showToast(title, description, true)
     }
   }
 
@@ -95,6 +103,8 @@ export function Login() {
           onClick={() => navigate('/cadastro')}
         />
       </form>
+
+      {ToastComponents}
     </main>
   )
 }

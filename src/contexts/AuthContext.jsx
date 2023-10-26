@@ -17,18 +17,23 @@ export function AuthContextProvider({ children }) {
       const token = localStorage.getItem('node-bounty')
       if (token) {
         setToken(token)
-        api.defaults.headers.common.Authorization = token
+        api.defaults.headers.common.Authorization = `Bearer ${token}`
       }
       setAuthIsLoading(false)
     }
     retrieveToken()
   }, [])
 
+  // Passando o método de logout para as configs do axios
+  useEffect(() => {
+    api.registerInterceptTokenManager(logout)
+  }, [logout])
+
   // Método para salvar o token no localstorage e depois no estado
   function saveToken(token) {
     localStorage.setItem('node-bounty', token)
     setToken(token)
-    api.defaults.headers.common.Authorization = token
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
   }
 
   // Método para remover o token (Fazer logout)
