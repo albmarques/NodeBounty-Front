@@ -11,6 +11,7 @@ import { PublicHome } from '@pages/public/Home'
 import { SignUp } from '@pages/public/SignUp'
 import { Login } from '@pages/public/Login'
 import { CreditCardPage } from '@pages/public/CreditCardPage'
+import { Sobre } from '@pages/public/Sobre'
 
 export function Router() {
   const { token } = useContext(authContext)
@@ -29,6 +30,7 @@ export function Router() {
           <Route path="/" element={<PublicHome />} />
           <Route path="/cadastro" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/Sobre" element={<Sobre />} />
           {/* ...Insira outras rotas públicas aqui */}
         </Route>
       )}

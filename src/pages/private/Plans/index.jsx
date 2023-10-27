@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
+
 import { useNavigate } from 'react-router-dom'
 
 import { api } from '@lib/api.js'
@@ -6,6 +7,7 @@ import { authContext } from '@contexts/AuthContext.jsx'
 
 import { Loading } from '@components/Loading'
 import { Button } from '@components/Button'
+import styles from './styles.module.css'
 
 export function Plans() {
   const [plans, setPlans] = useState([])
@@ -60,18 +62,80 @@ export function Plans() {
   ) : (
     <main>
       <form onSubmit={handleSubmitPlan}>
-        <select
-          name="nomePlano"
-          value={selectedPlan}
-          onChange={(e) => setSelectedPlan(e.target.value)}
-        >
-          {plans.map((plan) => (
-            <option value={plan.idPlano} key={plan.idPlano}>
-              {plan.idPlano}
-            </option>
-          ))}
-        </select>
-        <Button titulo="Confirmar plano" type="submit" />
+        <div className={' container mt-5'}>
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-md-8 col-sm-10 col-12">
+              <div>
+                <div>
+                  <h2>Escolha seu Plano</h2>
+                  <div>
+                    <div>
+                      <div>
+                        <p>
+                          Acúmulo de pontos.<br></br> Ausência de taxas de manutenção e
+                          anuidade do cartão.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="row justify-content-center">
+                      <div className="col justify-content-center">
+                        <div className={styles.benefitCard}>
+                          <div>
+                            <strong>Plano {plans[0].idPlano}</strong>
+                            <p>Cashback exclusivo de <b>{plans[0].porcentagemCashback}%</b>  para produtos de beleza.</p><p>
+                              Com desconto nas parcerias:
+                              <p><b>{plans[0].parcerias}</b></p>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col justify-content-center">
+                        <div className={styles.benefitCard}>
+                          <div>
+                            <strong>Plano {plans[1].idPlano}</strong>
+                            <p>Cashback exclusivo de <b>{plans[1].porcentagemCashback}%</b>  para produtos de tech.</p><p>
+                              Com desconto nas parcerias:
+                              <p><b>{plans[1].parcerias}</b></p>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col justify-content-center">
+                        <div className={styles.benefitCard}>
+                          <div>
+                            <strong>Plano {plans[2].idPlano}</strong>
+                            <p>Cashback exclusivo de <b>{plans[2].porcentagemCashback}%</b>  para produtos de esporte e saúde.</p><p>
+                              Com desconto nas parcerias:
+                              <p><b>{plans[2].parcerias}</b></p>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div><p></p> </div>
+                <div className="row justify-content-center">
+                  <select
+                    name="nomePlano"
+                    value={selectedPlan}
+                    onChange={(e) => setSelectedPlan(e.target.value)}
+                  >
+                    {plans.map((plan) => (
+                      <option value={plan.idPlano} key={plan.idPlano}>
+                        {plan.idPlano}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="row justify-content-center">
+                  <Button titulo="Confirmar plano" type="submit" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </form>
     </main>
   )

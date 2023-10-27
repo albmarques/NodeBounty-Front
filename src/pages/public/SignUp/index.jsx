@@ -6,6 +6,8 @@ import z from 'zod'
 import dayjs from 'dayjs'
 
 import { api } from '@lib/api'
+import { useToast } from '@hooks/useToast'
+import { AppError } from '@utils/AppError'
 
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
@@ -72,14 +74,20 @@ export function SignUp() {
   })
 
   const navigate = useNavigate()
+  const { showToast, ToastComponents } = useToast()
 
   async function handleCadastrarUsuario({ _confirmarSenha, ...rest }) {
     try {
       await api.post('/clientes', { ...rest })
       navigate('/login')
     } catch (error) {
-      alert('Um erro ocorreu, por favor tente novamente')
-      console.log(error)
+      const isAppError = error instanceof AppError
+      const title = isAppError ? error.message : 'Erro no servidor.'
+      const description = isAppError
+        ? 'Certifique-se que o e-mail, cpf e rg são únicos.'
+        : 'Tente novamente mais tarde.'
+
+      showToast(title, description, true)
     }
   }
 
@@ -264,6 +272,7 @@ export function SignUp() {
           />
         </div>
       </form>
+      {ToastComponents}
     </main>
   )
 }

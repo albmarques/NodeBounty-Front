@@ -16,7 +16,7 @@ export function Header() {
 
         <nav className={styles.nav}>
           <NavLink to="/">Node Invest +</NavLink>
-          <NavLink to="/">Sobre</NavLink>
+          <NavLink to="/Sobre">Sobre</NavLink>
           <NavLink to="/cadastro">Abrir conta</NavLink>
           <NavLink to="/login">Acesso</NavLink>
 
@@ -34,7 +34,7 @@ export function Header() {
                   <NavLink to="/">Node Invest +</NavLink>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
-                  <NavLink to="/">Sobre</NavLink>
+                  <NavLink to="/Sobre">Sobre</NavLink>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item>
                   <NavLink to="/cadastro">Abrir conta</NavLink>

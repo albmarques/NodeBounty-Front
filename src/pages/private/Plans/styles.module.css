@@ -1,0 +1,43 @@
+
+
+.form {
+  background-color: rgba(30, 30, 30, 0.2);
+  padding: 2.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 35rem;
+  margin: 0 auto;
+}
+
+.benefitCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 16.25rem;
+  min-width: 9.25rem;
+  width: 100%;
+  align-items: center;
+}
+.benefitCard > div {
+  border: 1px solid var(--white);
+  border-radius: 4px;
+  min-height: 18rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch ;
+  gap: .5rem;
+  padding: .5rem;
+}
+.benefitCard > div > p {
+  text-align: center;
+  line-height: 1.5;
+  color: var(--blue-200);
+}
+.benefitCard strong {
+  font-size: 1.25rem;
+  line-height: 1.1;
+  font-weight: 500;
+}
