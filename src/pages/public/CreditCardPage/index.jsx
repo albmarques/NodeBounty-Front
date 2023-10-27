@@ -1,59 +1,75 @@
-import { useState, useEffect } from 'react'
-
-import { Button } from '@components/Button'
-import { CreditCard } from '@components/CreditCard'
-import { Loading } from '@components/Loading'
-import styles from './styles.module.css'
-
-import { api } from '@lib/api.js'
+import React, { useState, useEffect } from 'react';
+import { Button } from '@components/Button';
+import { CreditCard } from '@components/CreditCard';
+import { Loading } from '@components/Loading';
+import styles from './styles.module.css';
+import { api } from '@lib/api.js';
 
 export function CreditCardPage() {
-  const [cartoes, setCartoes] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [erro, setErro] = useState(null)
+  const [cartoes, setCartoes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [erro, setErro] = useState(null);
+  const [cardToDelete, setCardToDelete] = useState(null);
 
   useEffect(() => {
     const consulta = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
-        const { data } = await api.get('/cartoes')
-        setCartoes(data)
+        const { data } = await api.get('/cartoes');
+        setCartoes(data);
       } catch (error) {
-        alert('Um erro ocorreu, por favor tente novamente')
-        setErro(error.message)
-        console.log(error)
+        alert('Um erro ocorreu, por favor tente novamente');
+        setErro(error.message);
+        console.log(error);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
-    consulta()
-  }, [])
+    };
+    consulta();
+  }, []);
 
   async function GerarCartao() {
-    console.log('Tentando gerar cartão...')
+    console.log('Tentando gerar cartão...');
 
     try {
-      const { data } = await api.post('/cartoes')
-      setCartoes((cartoes) => [...cartoes, data])
+      const { data } = await api.post('/cartoes');
+      setCartoes((cartoes) => [...cartoes, data]);
     } catch (error) {
-      alert('Um erro ocorreu, por favor tente novamente')
-      setErro(error.message)
-      console.log(error)
+      alert('Um erro ocorreu, por favor tente novamente');
+      setErro(error.message);
+      console.log(error);
     }
   }
 
   async function deletarCartao(idCartaoDeletar) {
-    try {
-      const { data } = await api.delete(`/cartoes/${idCartaoDeletar}`)
-      setCartoes((cartoes) =>
-        cartoes.filter((cartao) => cartao.idCartao !== idCartaoDeletar),
-      )
-    } catch (error) {
-      alert('Um erro ocorreu, por favor tente novamente')
-      setErro(error.message)
-      console.log(error)
-    }
+    // Set the card ID to be deleted in the state
+    setCardToDelete(idCartaoDeletar);
   }
+
+  // Use a confirmation dialog before deleting
+  useEffect(() => {
+    if (cardToDelete !== null) {
+      const isConfirmed = window.confirm('Você realmente deseja deletar esse cartão?');
+      if (isConfirmed) {
+        // User confirmed, delete the card
+        async function deleteConfirmedCard() {
+          try {
+            const { data } = await api.delete(`/cartoes/${cardToDelete}`);
+            setCartoes((cartoes) =>
+              cartoes.filter((cartao) => cartao.idCartao !== cardToDelete),
+            );
+          } catch (error) {
+            alert('Um erro ocorreu, por favor tente novamente');
+            setErro(error.message);
+            console.log(error);
+          }
+        }
+        deleteConfirmedCard();
+      }
+      // Reset the cardToDelete state
+      setCardToDelete(null);
+    }
+  }, [cardToDelete]);
 
   return isLoading ? (
     <Loading />
@@ -62,15 +78,19 @@ export function CreditCardPage() {
       <div>
         {cartoes.map((cartao) => (
           <div key={cartao.idCartao}>
-            {CreditCard(cartao)}
+            <CreditCard
+              numeroCartao={cartao.numeroCartao}
+              validadeCartao={cartao.validadeCartao}
+              cvcCartao={cartao.cvcCartao}
+            />
             <div class="row justify-content-center mt-1">
               <div class="col-2 text-left">
-            <Button
-              id={cartao.idCartao}
-              titulo="Deletar Cartão"
-              onClick={() => deletarCartao(cartao.idCartao)}
-            />
-             </div>
+                <Button
+                  id={cartao.idCartao}
+                  titulo="Deletar Cartão"
+                  onClick={() => deletarCartao(cartao.idCartao)}
+                />
+              </div>
             </div>
           </div>
         ))}
@@ -90,5 +110,6 @@ export function CreditCardPage() {
         <div className="elementos-container"></div>
       </div>
     </div>
-  )
+  );
 }
+
