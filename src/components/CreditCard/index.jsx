@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import eye from '@assets/eye.svg'; // Ícone do olho aberto
 import eyeSlash from '@assets/eye-slash.svg'; // Ícone do olho fechado
 
-export function CreditCard({ numeroCartao, validadeCartao, cvcCartao }) {
+export function CreditCard({ numeroCartao, validadeCartao, cvcCartao,color }) {
   const [isMasked, setIsMasked] = useState(true);
 
   const handleMaskToggle = () => {
@@ -33,18 +33,28 @@ export function CreditCard({ numeroCartao, validadeCartao, cvcCartao }) {
     }
   };
 
+  console.log(color);
+
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="tamanho">
-          <div className={styles.cardContainer}>
+          <div className={`${styles.cardContainer}`} style={
+            color === 'bgBeauty' ? {
+              background: 'linear-gradient(125deg, #432452 10%, #A5A1A5 )',
+            } : color === 'bgTech' ? {
+              background: 'linear-gradient(125deg, #26854a 10%, #A5A1A5 )',
+            } : {
+              background: 'linear-gradient(125deg, #1f3ad1 10%, #A5A1A5 )',
+            }
+          }>
             <div className={styles.cardContent}>
-            <div className={styles.cardNumber}>
-  {maskCardNumber(numeroCartao)}
-  <a onClick={handleMaskToggle}>
-    <img className={styles.eye} src={isMasked ? eyeSlash : eye} alt="Toggle Card Number" />
-  </a>
-</div>
+              <div className={styles.cardNumber}>
+                {maskCardNumber(numeroCartao)}
+                <a onClick={handleMaskToggle}>
+                  <img className={styles.eye} src={isMasked ? eyeSlash : eye} alt="Toggle Card Number" />
+                </a>
+              </div>
             </div>
             <div className={styles.expirationCvv}>
               <div>

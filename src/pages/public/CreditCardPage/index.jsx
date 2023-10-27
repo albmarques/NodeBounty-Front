@@ -27,7 +27,8 @@ export function CreditCardPage() {
     }
     consulta()
   }, [])
-
+  
+  // console.log(cartoes[0].conta.plano.idPlano)
   async function GerarCartao() {
     console.log('Tentando gerar cartão...')
 
@@ -73,6 +74,8 @@ export function CreditCardPage() {
     }
   }, [cardToDelete])
 
+  console.log(cartoes)
+
   return isLoading ? (
     <Loading />
   ) : (
@@ -84,6 +87,7 @@ export function CreditCardPage() {
               numeroCartao={cartao.numeroCartao}
               validadeCartao={cartao.validadeCartao}
               cvcCartao={cartao.cvcCartao}
+              color={cartao.conta.plano.idPlano === 'Beauty' ? 'bgBeauty' : cartao.conta.plano.idPlano === 'Tech' ? 'bgTech' : 'bgHealth' }
             />
             <div className="row justify-content-center mt-1">
               <div className="col-2 text-left">
