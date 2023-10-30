@@ -8,13 +8,13 @@
   justify-content: space-around;
   padding: 1.25rem;
 }
-.sidebar nav button {
+.sidebar nav button, .dropdownMenuContent div button {
   border: none;
   background: transparent;
   color: var(--white);
   cursor: pointer;
 }
-.sidebar nav a, .sidebar nav button {
+.sidebar nav > a, .logout {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -25,6 +25,63 @@
 .sidebar nav a[class="active"] {
   color: var(--blue-300);
 }
-.sidebar nav a:hover, .sidebar nav button:hover {
+.sidebar nav a:hover, .logout:hover {
   color: var(--blue-300);
+}
+
+/* Configs menu hamburguer mobile */
+
+.hamburguerMenu {
+  all: unset;
+  border-radius: 4px;
+  color: var(--white);
+  cursor: pointer;
+  transition: 0.3s;
+  padding-bottom: 8px;
+  display: none;
+}
+.hamburguerMenu[data-state="open"] {
+  color: var(--blue-300);
+}
+.hamburguerMenu:hover {
+  color: var(--blue-300);
+}
+
+.dropdownMenuContent {
+  width: 220px;
+  background-color: var(--blue-600);
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+}
+.dropdownMenuContent div a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  padding-bottom: 0.75rem;
+}
+.dropdownMenuContent div:last-child a {
+  padding-bottom: 0;
+}
+.dropdownMenuContent div a:hover {
+  color: var(--blue-300);
+}
+.dropdownMenuContent div a[class="active"] {
+  color: var(--blue-300);
+}
+
+@media (max-width: 800px) {
+  .sidebar nav {
+    display: block;
+  }
+  .sidebar nav > a, .logout {
+    display: none;
+  }
+  .hamburguerMenu {
+    display: block;
+  }
 }

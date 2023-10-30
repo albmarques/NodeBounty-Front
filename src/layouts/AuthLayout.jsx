@@ -1,15 +1,11 @@
 import { Outlet } from 'react-router-dom'
+
 import { Sidebar } from '../components/Sidebar'
+import styles from './AuthLayout.styles.module.css'
 
 export function AuthLayout() {
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '260px 1fr',
-        minHeight: '100vh',
-      }}
-    >
+    <div className={styles.authContainer}>
       <Sidebar />
       <Outlet />
     </div>
