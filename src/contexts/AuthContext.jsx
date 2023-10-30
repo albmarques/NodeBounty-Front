@@ -40,6 +40,7 @@ export function AuthContextProvider({ children }) {
   function logout() {
     localStorage.removeItem('node-bounty')
     setToken(null)
+    api.defaults.headers.common.Authorization = null
     navigate('/')
   }
 
