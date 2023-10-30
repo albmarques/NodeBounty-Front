@@ -85,7 +85,7 @@ export function CreditCardPage() {
       
       // Reset the cardToDelete state
       setCardToDelete(null)
-      showToast("Cartão", "Cartão foi excluido com sucesso!", true)
+      showToast("Cartão", "Cartão foi excluido com sucesso!", false)
     }
   }, [cardToDelete])
 
