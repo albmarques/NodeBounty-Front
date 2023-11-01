@@ -7,6 +7,7 @@ import { DefaultLayout } from '@layouts/DefaultLayout.jsx'
 import { AuthLayout } from '@layouts/AuthLayout.jsx'
 import { PrivateHome } from '@pages/private/Home'
 import { Plans } from '@pages/private/Plans'
+import { Invest } from '@pages/private/Invest'
 import { PublicHome } from '@pages/public/Home'
 import { SignUp } from '@pages/public/SignUp'
 import { Login } from '@pages/public/Login'
@@ -23,6 +24,7 @@ export function Router() {
           <Route path="/" element={<PrivateHome />} />
           <Route path="/planos" element={<Plans />} />
           <Route path="/cartoes" element={<CreditCardPage />} />
+          <Route path="/investir" element={<Invest />} />
           {/* ...Insira outras rotas privadas aqui */}
         </Route>
       ) : (

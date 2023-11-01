@@ -118,7 +118,7 @@ export function PrivateHome() {
   return isLoading ? (
     <Loading />
   ) : (
-    <div>
+    <div style={{ flex: 1 }}>
       <main className={styles.containerHome}>
         <div className={styles.userInfo}>
           <div>

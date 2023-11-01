@@ -1,4 +1,10 @@
 .sidebar {
+  flex: 0 0 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+
   background-color: var(--blue-600);
   display: grid;
 }
@@ -75,6 +81,12 @@
 }
 
 @media (max-width: 800px) {
+  .sidebar {
+    flex: 1;
+    height: auto;
+    position: static;
+  }
+
   .sidebar nav {
     display: block;
   }
