@@ -64,7 +64,7 @@ export function Plans() {
       <form onSubmit={handleSubmitPlan}>
         <div className={' container mt-5'}>
           <div className="row justify-content-center">
-            <div className="col-lg-6 col-md-8 col-sm-10 col-12">
+            <div className="col-lg-3 col-lg-9 col-12">
               <div>
                 <div>
                   <h2>Escolha seu Plano</h2>
@@ -77,59 +77,56 @@ export function Plans() {
                         </p>
                       </div>
                     </div>
-                    <div className="row justify-content-center">
-                      <div className="col justify-content-center">
-                        <div className={styles.benefitCard}>
-                          <div>
-                            <strong>Plano {plans[0].idPlano}</strong>
+                    <div class={"card-group"}>
+                      <div class={"card bg-transparent border-white"}>
+                        <div class="card-body text-white">
+                          <h4 class="card-title"> <strong>Plano {plans[0].idPlano}</strong></h4>
+                          <p class="card-text ">Cashback exclusivo de{' '}
+                            <b>{plans[2].porcentagemCashback}%</b> para
+                            produtos de beleza.
+                          </p>
+                          <p>
+                            Com desconto nas parcerias:
                             <p>
-                              Cashback exclusivo de{' '}
-                              <b>{plans[0].porcentagemCashback}%</b> para
-                              produtos de beleza.
+                              <b>{plans[0].parcerias}</b>
                             </p>
-                            <p>
-                              Com desconto nas parcerias:
-                              <p>
-                                <b>{plans[0].parcerias}</b>
-                              </p>
-                            </p>
-                          </div>
+                          </p>
+                        </div>
+                        <div class="card-footer">
                         </div>
                       </div>
-                      <div className="col justify-content-center">
-                        <div className={styles.benefitCard}>
-                          <div>
-                            <strong>Plano {plans[1].idPlano}</strong>
+                      <div class="card bg-transparent border-white">
+                        <div class="card-body text-white ">
+                          <h4 class="card-title"> <strong>Plano {plans[1].idPlano}</strong></h4>
+                          <p class="card-text">Cashback exclusivo de{' '}
+                            <b>{plans[2].porcentagemCashback}%</b> para
+                            produtos de tech.
+                          </p>
+                          <p>
+                            Com desconto nas parcerias:
                             <p>
-                              Cashback exclusivo de{' '}
-                              <b>{plans[1].porcentagemCashback}%</b> para
-                              produtos de tech.
+                              <b>{plans[1].parcerias}</b>
                             </p>
-                            <p>
-                              Com desconto nas parcerias:
-                              <p>
-                                <b>{plans[1].parcerias}</b>
-                              </p>
-                            </p>
-                          </div>
+                          </p>
+                        </div>
+                        <div class="card-footer">
                         </div>
                       </div>
-                      <div className="col justify-content-center">
-                        <div className={styles.benefitCard}>
-                          <div>
-                            <strong>Plano {plans[2].idPlano}</strong>
+                      <div class="card bg-transparent border-white">
+                        <div class="card-body text-white">
+                          <h4 class="card-title"> <strong>Plano {plans[2].idPlano}</strong></h4>
+                          <p class="card-text">Cashback exclusivo de{' '}
+                            <b>{plans[2].porcentagemCashback}%</b> para
+                            produtos de esporte e saúde.
+                          </p>
+                          <p>
+                            Com desconto nas parcerias:
                             <p>
-                              Cashback exclusivo de{' '}
-                              <b>{plans[2].porcentagemCashback}%</b> para
-                              produtos de esporte e saúde.
+                              <b>{plans[2].parcerias}</b>
                             </p>
-                            <p>
-                              Com desconto nas parcerias:
-                              <p>
-                                <b>{plans[2].parcerias}</b>
-                              </p>
-                            </p>
-                          </div>
+                          </p>
+                        </div>
+                        <div class="card-footer">
                         </div>
                       </div>
                     </div>
@@ -139,20 +136,24 @@ export function Plans() {
                   <p></p>{' '}
                 </div>
                 <div className="row justify-content-center">
-                  <select
-                    name="nomePlano"
-                    value={selectedPlan}
-                    onChange={(e) => setSelectedPlan(e.target.value)}
-                  >
-                    {plans.map((plan) => (
-                      <option value={plan.idPlano} key={plan.idPlano}>
-                        {plan.idPlano}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="row justify-content-center">
-                  <Button titulo="Confirmar plano" type="submit" />
+                  <div className="col-lg-9">
+                    <div className="row justify-content-center">
+                      <select
+                        name="nomePlano"
+                        value={selectedPlan}
+                        onChange={(e) => setSelectedPlan(e.target.value)}
+                      >
+                        {plans.map((plan) => (
+                          <option value={plan.idPlano} key={plan.idPlano}>
+                            {plan.idPlano}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="row justify-content-center">
+                      <Button titulo="Confirmar plano" type="submit" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
