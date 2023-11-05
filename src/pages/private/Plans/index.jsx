@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react'
-
 import { useNavigate } from 'react-router-dom'
 
 import { api } from '@lib/api.js'
@@ -60,7 +59,7 @@ export function Plans() {
   return isLoading ? (
     <Loading />
   ) : (
-    <main>
+    <main style={{ flex: 1 }}>
       <form onSubmit={handleSubmitPlan}>
         <div className={' container mt-5'}>
           <div className="row justify-content-center">

@@ -24,7 +24,6 @@ export function Router() {
         <Route path="/" element={<AuthLayout />}>
           <Route path="/" element={<PrivateHome />} />
           <Route path="/planos" element={<Plans />} />
-          <Route path="/transacoes" element={<TransactionPage/>} />
           <Route path="/cartoes" element={<CreditCardPage />} />
           <Route path="/investir" element={<Invest />} />
           {/* ...Insira outras rotas privadas aqui */}

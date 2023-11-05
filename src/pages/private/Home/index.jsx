@@ -1,4 +1,5 @@
 import { useState, useContext, useCallback, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
@@ -46,6 +47,7 @@ export function PrivateHome() {
 
   const { showToast, ToastComponents } = useToast()
   const { logout } = useContext(authContext)
+  const navigate = useNavigate()
 
   const {
     handleSubmit,
@@ -62,7 +64,6 @@ export function PrivateHome() {
       setIsLoading(true)
       const { data } = await api.get('/conta')
       setDadosConta(data)
-      console.log(data)
       setValue('nome', data.cliente.nome)
       setValue('endereco', data.cliente.endereco)
       setValue('cep', data.cliente.cep)
@@ -70,10 +71,21 @@ export function PrivateHome() {
       setValue('telefone', data.cliente.telefone)
       setIsLoading(false)
     } catch (error) {
-      alert('Um erro ocorreu')
-      console.log(error)
+      const isAppError = error instanceof AppError
+      // Verificando se o erro ocorreu pois o usuário não possui conta
+      // Por não ter escolhido ainda na tela de planos.
+      if (
+        isAppError &&
+        error.message ===
+          'Cliente não possui nenhuma conta associada no sistema'
+      ) {
+        navigate('/planos')
+      } else {
+        alert('Um erro ocorreu')
+        console.log(error)
+      }
     }
-  }, [setValue])
+  }, [navigate, setValue])
 
   // Chamando função para carregar os dados quando a página abrir
   useEffect(() => {
