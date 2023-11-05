@@ -13,6 +13,7 @@ import { SignUp } from '@pages/public/SignUp'
 import { Login } from '@pages/public/Login'
 import { CreditCardPage } from '@pages/public/CreditCardPage'
 import { Sobre } from '@pages/public/Sobre'
+import { TransactionPage } from '@pages/private/transactionPage'
 
 export function Router() {
   const { token } = useContext(authContext)
@@ -20,15 +21,13 @@ export function Router() {
   return (
     <Routes>
       {token ? (
-        <>
-          <Route path="/" element={<AuthLayout />}>
-            <Route path="/" element={<PrivateHome />} />
-            <Route path="/cartoes" element={<CreditCardPage />} />
-            <Route path="/investir" element={<Invest />} />
-            {/* ...Insira outras rotas privadas aqui */}
-          </Route>
+        <Route path="/" element={<AuthLayout />}>
+          <Route path="/" element={<PrivateHome />} />
           <Route path="/planos" element={<Plans />} />
-        </>
+          <Route path="/cartoes" element={<CreditCardPage />} />
+          <Route path="/investir" element={<Invest />} />
+          {/* ...Insira outras rotas privadas aqui */}
+        </Route>
       ) : (
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<PublicHome />} />
