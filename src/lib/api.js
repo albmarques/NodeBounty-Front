@@ -12,7 +12,11 @@ api.registerInterceptTokenManager = (signOut) => {
     (response) => response, // Nenhum erro na resposta, nada a ser feito,
     async (requestError) => {
       // Verificando se é um erro 403 (Unhautorized). Possível problema com token, deslogar usuário
-      if (requestError.response?.status === 403) {
+      if (
+        requestError.response?.status === 403 ||
+        requestError.response?.data?.message ===
+          'Cliente não encontrado no sistema'
+      ) {
         signOut()
         return Promise.reject(requestError)
       }
