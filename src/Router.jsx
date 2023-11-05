@@ -21,13 +21,16 @@ export function Router() {
   return (
     <Routes>
       {token ? (
-        <Route path="/" element={<AuthLayout />}>
-          <Route path="/" element={<PrivateHome />} />
+        <>
+          <Route path="/" element={<AuthLayout />}>
+            <Route path="/" element={<PrivateHome />} />
+            <Route path="/cartoes" element={<CreditCardPage />} />
+            <Route path="/investir" element={<Invest />} />
+            <Route path="/transacoes" element={<TransactionPage />} />
+            {/* ...Insira outras rotas privadas aqui */}
+          </Route>
           <Route path="/planos" element={<Plans />} />
-          <Route path="/cartoes" element={<CreditCardPage />} />
-          <Route path="/investir" element={<Invest />} />
-          {/* ...Insira outras rotas privadas aqui */}
-        </Route>
+        </>
       ) : (
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<PublicHome />} />
