@@ -1,0 +1,10 @@
+.withdrawContainer{
+    border-radius: 20px;
+    background-color: #234149;
+        min-height: 500px; /* Defina a altura mínima desejada em pixels ou outra unidade de medida */
+        padding: 10px 0 0 40px; /* Margem: superior, direita, inferior, esquerda */    
+}
+
+.font{
+    font-size: 2.0rem;
+}
