@@ -4,7 +4,7 @@ export function Withdraw() {
         <div class="container mt-5">
             <h1 className=''>Sacar
             </h1>
-            <div class="row mt-2">
+            <div class="row mt-4">
                 <div class="col-6">
                     <div className={styles.withdrawContainer}>
                         <div className={styles.font}>Saldo</div>
@@ -12,7 +12,8 @@ export function Withdraw() {
                         <div class="row">
                             <div className={styles.questionValue}>Informe o valor do saque a ser efetuado:</div>
                         </div>
-                        <input className={styles.questionValue} type="text" name="" id="" />
+                        <input className={styles.value} type="text" name="" id="" />
+                        <input type="button" className={styles.button} value="Sacar" />
                     </div>
                     
 
