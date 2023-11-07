@@ -7,12 +7,14 @@ export function Withdraw() {
             <div class="row mt-2">
                 <div class="col-6">
                     <div className={styles.withdrawContainer}>
-                        <div className={styles.font}>saldo</div>
-                        <div className={styles.font}>valor</div>
+                        <div className={styles.font}>Saldo</div>
+                        <div className={styles.font}>R$1000.00</div>
                         <div class="row">
-                            <div className={styles.font}>Informe o valor do saque a ser efetuado:</div>
+                            <div className={styles.questionValue}>Informe o valor do saque a ser efetuado:</div>
                         </div>
+                        <input className={styles.questionValue} type="text" name="" id="" />
                     </div>
+                    
 
                 </div>
             </div>
