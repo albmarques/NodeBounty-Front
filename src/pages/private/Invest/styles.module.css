@@ -4,6 +4,24 @@
   padding: 3.75rem 1.25rem;
   margin: 0 auto;
 }
+.containerInvestment h1 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.gridContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 720px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+}
 
 .form {
   background-color: rgba(30, 30, 30, 0.2);
@@ -12,4 +30,50 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+.investmentResult {
+  background-color: rgba(30, 30, 30, 0.2);
+  padding: 2.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.investmentResult h2 {
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.investmentResultValues {
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--blue-400);
+}
+.investmentResultValues span{
+  display: block;
+  font-size: 1rem;
+  color: var(--blue-100);
+}
+.investmentResultValues strong {
+  display: block;
+  font-size: 2rem;
+  color: var(--blue-300);
+  font-weight: 500;
+}
+
+.investmentInfo {
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--blue-400);
+}
+.investmentInfo p, .profitabilityInfo p {
+  margin-bottom: 0;
+}
+
+.profitabilityInfo {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--blue-100);
 }
