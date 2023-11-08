@@ -1,0 +1,30 @@
+.mainContainer {
+    margin-left: 250px; /* Margem esquerda fixa para telas maiores */
+  }
+  
+  @media (max-width: 1200px) {
+    .mainContainer {
+      margin-left: 100px; /* Remover a margem esquerda em telas menores */
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    .mainContainer {
+      margin-left: 50px; /* Remover a margem esquerda em telas menores */
+    }
+  }
+  
+  /* Use uma media query para ajustar a margem em telas menores */
+  @media (max-width: 900px) {
+    .mainContainer {
+      margin-left: 0; /* Remover a margem esquerda em telas menores */
+    }
+  }
+  .withdrawContainer{
+      border-radius: 20px;
+      background-color: #234149;
+          padding: 10px 50px 0 50px; /* Margem: superior, direita, inferior, esquerda */    
+        width: 100%;
+  }
+
+  
