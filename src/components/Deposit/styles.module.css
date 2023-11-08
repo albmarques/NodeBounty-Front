@@ -1,8 +1,30 @@
+.mainContainer {
+  margin-left: 250px; /* Margem esquerda fixa para telas maiores */
+}
+
+@media (max-width: 1200px) {
+  .mainContainer {
+    margin-left: 100px; /* Remover a margem esquerda em telas menores */
+  }
+}
+
+@media (max-width: 1000px) {
+  .mainContainer {
+    margin-left: 50px; /* Remover a margem esquerda em telas menores */
+  }
+}
+
+/* Use uma media query para ajustar a margem em telas menores */
+@media (max-width: 900px) {
+  .mainContainer {
+    margin-left: 0; /* Remover a margem esquerda em telas menores */
+  }
+}
 .withdrawContainer{
     border-radius: 20px;
     background-color: #234149;
-        min-height: 500px; /* Defina a altura mínima desejada em pixels ou outra unidade de medida */
-        padding: 10px 0 0 50px; /* Margem: superior, direita, inferior, esquerda */    
+        padding: 10px 50px 0 50px; /* Margem: superior, direita, inferior, esquerda */    
+      width: 100%;
 }
 
 .font{
@@ -18,46 +40,21 @@
     background-color: #223840;
     border-style: none;
     border-radius: 20px;
-    width: 86%;
+    width: 95%;
     color: white;
     height: 60px;
     font-size:1.6rem; 
 }
-    .button {
-        padding: 1rem 0.75rem;
-        border-radius: 5px;
-        border: 1px solid var(--white);
-        font-size: 1.25rem;
-        line-height: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--white);
-        min-width: 12.5rem;
-        transition: 0.3s;
-      }
-      .button:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-      
-      .buttonPrimary {
-        background-color: rgba(77, 77, 77, 0.3);
-      }
-      .buttonPrimary:not(:disabled):hover {
-        background-color: var(--blue-300);
-      }
-      
-      .buttonSecondary {
-        background-color: transparent;
-      }
-      .buttonSecondary:not(:disabled):hover {
-        color: var(--blue-300);
-        border-color: var(--blue-300);
-      }
-      
 
-
-      .errorMessage {
-        color: red;
-      }
+.button{
+  background-color: #223840;
+  border-style: none;
+  border-radius: 20px;
+  width: 95%;
+  color: white;
+  height: 90px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  font-size: 1.4rem;
+}
+      

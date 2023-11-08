@@ -40,6 +40,28 @@ export function Deposit() {
     }
 
     return (
+<div className={`mt-5 ${styles.mainContainer}`} >
+            <h1 className=''>Depositar
+            </h1>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div className={styles.withdrawContainer}>
+                        <div className={styles.font}>Saldo</div>
+                        <div className={styles.font}>R$1000.00</div>
+                            <div className={styles.questionValue}>Informe o valor do depósito a ser efetuado:</div>
+                            <form onSubmit={handleSubmit(handleDepositar)}>
+                            <input className={styles.value} {...register('valor')} />
+                            {errors.valor && <p className={styles.errorMessage}>{errors.valor.message}</p>}
+                        <input type="submit" className={styles.button} value="Depositar" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {ToastComponents}
+        </div>
+        
+
+        /*
         <div class="container mt-5">
             <h1 className=''>Depositar
             </h1>
@@ -64,6 +86,6 @@ export function Deposit() {
             </div>
 
             {ToastComponents}
-        </div>
+        </div>*/
     )
 }
