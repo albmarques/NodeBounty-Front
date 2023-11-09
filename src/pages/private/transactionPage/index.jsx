@@ -20,9 +20,9 @@ export function TransactionPage(){
 
       {renderComponent()}
 
-      <div className={`mt-2 ${styles.mainContainer}`}>
-        <button onClick={() => setActiveComponent('Withdraw')}>Sacar</button>
-        <button onClick={() => setActiveComponent('Deposit')}>Depósito</button>
+      <div className={`mt-4 ${styles.mainContainer}`}>
+        <button className={styles.leftButton}onClick={() => setActiveComponent('Withdraw')}>Sacar</button>
+        <button className={styles.rightButton} onClick={() => setActiveComponent('Deposit')}>Depositar</button>
       </div>
     </div>
   );
