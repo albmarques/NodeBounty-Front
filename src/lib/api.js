@@ -3,7 +3,7 @@ import axios from 'axios'
 import { AppError } from '@utils/AppError'
 
 export const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: import.meta.env.VITE_BACK_END_URL || 'http://localhost:8080',
 })
 
 // Interceptando respostas do back-end para verificar se devo jogar um erro customizado (Pois foi erro por parte do usuário) ou um erro padrão do Axios (Pois foi erro do servidor, ou o erro recebido não possui mensagem)
