@@ -1,6 +1,5 @@
 .mainContainer {
   margin-left: 250px; /* Margem esquerda fixa para telas maiores */
-  margin-top: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -45,6 +44,7 @@
     color: white;
     height: 60px;
     font-size:1.6rem; 
+    padding-left: 10px;
 }
 
 .button{
@@ -59,3 +59,7 @@
   font-size: 1.4rem;
 }
       
+.button:hover{
+  border-color: white;
+  border-style: inset;
+  }
