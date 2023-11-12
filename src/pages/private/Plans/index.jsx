@@ -81,7 +81,7 @@ export function Plans() {
                         <div class="card-body text-white">
                           <h4 class="card-title"> <strong>Plano {plans[0].idPlano}</strong></h4>
                           <p class="card-text ">Cashback exclusivo de{' '}
-                            <b>{plans[2].porcentagemCashback}%</b> para
+                            <b>{plans[0].porcentagemCashback}%</b> para
                             produtos de beleza.
                           </p>
                           <p>
@@ -98,7 +98,7 @@ export function Plans() {
                         <div class="card-body text-white ">
                           <h4 class="card-title"> <strong>Plano {plans[1].idPlano}</strong></h4>
                           <p class="card-text">Cashback exclusivo de{' '}
-                            <b>{plans[2].porcentagemCashback}%</b> para
+                            <b>{plans[1].porcentagemCashback}%</b> para
                             produtos de tech.
                           </p>
                           <p>

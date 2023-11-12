@@ -14,6 +14,7 @@ import { Login } from '@pages/public/Login'
 import { CreditCardPage } from '@pages/public/CreditCardPage'
 import { Sobre } from '@pages/public/Sobre'
 import { TransactionPage } from '@pages/private/transactionPage'
+import { Ajuda } from '@pages/public/ajuda'
 
 export function Router() {
   const { token } = useContext(authContext)
@@ -27,6 +28,7 @@ export function Router() {
             <Route path="/cartoes" element={<CreditCardPage />} />
             <Route path="/investir" element={<Invest />} />
             <Route path="/transacoes" element={<TransactionPage />} />
+            <Route path="/ajuda" element={<Ajuda />} />
             {/* ...Insira outras rotas privadas aqui */}
           </Route>
           <Route path="/planos" element={<Plans />} />
@@ -37,6 +39,7 @@ export function Router() {
           <Route path="/cadastro" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Sobre" element={<Sobre />} />
+          <Route path="/ajuda" element={<Ajuda />} />
           {/* ...Insira outras rotas públicas aqui */}
         </Route>
       )}
