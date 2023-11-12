@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 export function TransactionPage() {
   const [activeComponent, setActiveComponent] = useState('Withdraw');
 
+
+
   const renderComponent = () => {
     if (activeComponent === 'Withdraw') {
       return <Withdraw />;

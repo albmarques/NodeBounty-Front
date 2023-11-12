@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
-
+import { useState, useContext, useCallback, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { api } from '@lib/api';
 import { useToast } from '@hooks/useToast';
 import { AppError } from '@utils/AppError';
 
-import { Button } from '@components/Button';
 
 const schema = z.object({
   valor: z.coerce.number().min(0.01, 'O valor mínimo para depósito é de 1 centavo'),
@@ -15,6 +15,26 @@ const schema = z.object({
 import styles from './styles.module.css';
 
 export function Deposit() {
+  const [dadosConta, setDadosConta] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const navigate = useNavigate()
+
+  const loadAccountData = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      const { data } = await api.get('/conta')
+      setDadosConta(data)
+      setIsLoading(false)
+    } catch (error) {
+      const isAppError = error instanceof AppError
+    }
+  }, [navigate])
+
+  // Chamando função para carregar os dados quando a página abrir
+  useEffect(() => {
+    loadAccountData()
+  }, [loadAccountData])
+
   const {
     register,
     handleSubmit,
@@ -49,7 +69,7 @@ const handleInputChange = (event) => {
         <div class="col-12">
           <div className={styles.withdrawContainer}>
             <div className={styles.font}>Saldo</div>
-            <div className={styles.font}>R$ 1000.00</div>
+            <div className={styles.font}>R$ {dadosConta.saldoConta}</div>
             <div className={styles.questionValue}>Informe o valor do depósito a ser efetuado:</div>
             <form onSubmit={handleSubmit(handleDepositar)}>
               <input
