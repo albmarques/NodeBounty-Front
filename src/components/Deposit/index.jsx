@@ -47,8 +47,26 @@ export function Deposit() {
   const { showToast, ToastComponents } = useToast();
 
   async function handleDepositar(data) {
+    console.log(data.valor)
+    try {
+      const response = await api.post('/transacoes/depositar', { valor: data.valor });
+      
+      if (response.status === 200) {
+        console.log('Depósito realizado com sucesso:', response.data);
+        showToast('Depósito realizado com sucesso', 'sucesso');
+        loadAccountData();
+      } else {
+        console.error('Status de resposta inesperado:', response.status);
+        showToast('Erro ao depositar. Por favor, tente novamente.', 'erro');
+      }
+    } catch (error) {
+      console.error('Erro ao depositar:', error);
+      showToast('Erro ao depositar. Por favor, tente novamente.', 'erro');
+    }
   }
-
+  
+/*
+ERRO conflito com a linha 11 
 const handleInputChange = (event) => {
     const inputValue = event.target.value.replace(/\D/g, ''); 
     const numericValue = parseFloat(inputValue / 100).toFixed(2); 
@@ -59,7 +77,7 @@ const handleInputChange = (event) => {
   
     setValue('valor', numericValue); 
     event.target.value = formattedValue; 
-  };
+  };*/
   
 
   return (
@@ -75,7 +93,7 @@ const handleInputChange = (event) => {
               <input
                 className={styles.value}
                 {...register('valor')}
-                onChange={handleInputChange}
+                //onChange={handleInputChange}
                 placeholder="R$0,00"
               />
               
