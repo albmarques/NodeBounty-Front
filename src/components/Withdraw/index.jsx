@@ -9,15 +9,19 @@ import { AppError } from '@utils/AppError';
 
 import styles from './styles.module.css';
 
-const schema = z.object({
-  valor: z.coerce.number().min(0.01, 'O valor mínimo para saque é de 1 centavo'),
-});
 
 export function Withdraw() {
   const [dadosConta, setDadosConta] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
 
+
+  const schema = z.object({
+    valor: z.coerce.number().min(0.01, 'O valor mínimo para saque é de 1 centavo').max(dadosConta.saldoConta, 'O valor máximo de saque é de ' + dadosConta.saldoConta ),
+
+    
+  });
+  
   const loadAccountData = useCallback(async () => {
     try {
       setIsLoading(true)
@@ -64,20 +68,14 @@ export function Withdraw() {
     }
   }
   
-
- /*
-ERRO conflito com a linha 11 
-const handleInputChange = (event) => {
+  const handleInputChange = (event) => {
     const inputValue = event.target.value.replace(/\D/g, ''); 
     const numericValue = parseFloat(inputValue / 100).toFixed(2); 
-  
-    const formattedValue = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
-      numericValue
-    ); 
-  
+    
     setValue('valor', numericValue); 
-    event.target.value = formattedValue; 
-  };*/
+    event.target.value = numericValue; 
+  };
+  
 
   return (
     <div className={`mt-5 ${styles.mainContainer}`}>
@@ -92,9 +90,9 @@ const handleInputChange = (event) => {
               <input
                 className={styles.value}
                 {...register('valor')}
-                //onChange={handleInputChange}
+                onChange={handleInputChange}
                 placeholder="R$0,00"
-              />
+              type='text'/>
               {errors.valor && errors.valor.message !== 'Expected number, received nan' && (
         <p className={styles.errorMessage}>
           {errors.valor.message}
