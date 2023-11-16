@@ -55,16 +55,16 @@ export function Withdraw() {
       const response = await api.post('/transacoes/sacar', { valor: data.valor });
       
       if (response.status === 200) {
-        console.log('Depósito realizado com sucesso:', response.data);
-        showToast('Depósito realizado com sucesso', 'sucesso');
+        console.log('Saque realizado com sucesso:', response.data);
+        showToast('Saque realizado com sucesso', 'sucesso');
         loadAccountData();
       } else {
         console.error('Status de resposta inesperado:', response.status);
-        showToast('Erro ao depositar. Por favor, tente novamente.', 'erro');
+        showToast('Erro ao sacar. Por favor, tente novamente.', 'erro');
       }
     } catch (error) {
       console.error('Erro ao depositar:', error);
-      showToast('Erro ao depositar. Por favor, tente novamente.', 'erro');
+      showToast('Erro ao sacar. Por favor, tente novamente.', 'erro');
     }
   }
   
