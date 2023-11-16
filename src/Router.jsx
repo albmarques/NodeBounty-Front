@@ -14,7 +14,7 @@ import { Login } from '@pages/public/Login'
 import { CreditCardPage } from '@pages/public/CreditCardPage'
 import { Sobre } from '@pages/public/Sobre'
 import { TransactionPage } from '@pages/private/transactionPage'
-import { Ajuda } from '@pages/public/ajuda'
+import { Ajuda } from '@pages/public/Ajuda'
 
 export function Router() {
   const { token } = useContext(authContext)
