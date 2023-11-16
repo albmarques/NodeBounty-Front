@@ -1,4 +1,5 @@
 import { Deposit } from '../../../components/Deposit';
+import { Transfer } from '../../../components/Transfer';
 import styles from './styles.module.css';
 import { Withdraw } from "@components/Withdraw";
 import React, { useState } from 'react';
@@ -13,6 +14,8 @@ export function TransactionPage() {
       return <Withdraw />;
     } else if (activeComponent === 'Deposit') {
       return <Deposit />;
+    } else if (activeComponent === 'Transfer') {
+      return <Transfer />
     }
   };
 
@@ -28,10 +31,16 @@ export function TransactionPage() {
           Sacar
         </button>
         <button
-          className={`${styles.rightButton} ${activeComponent === 'Deposit' ? styles.activeButton : ''}`}
+          className={`${styles.centerButton} ${activeComponent === 'Deposit' ? styles.activeButton : ''}`}
           onClick={() => setActiveComponent('Deposit')}
         >
           Depositar
+        </button>
+        <button
+          className={`${styles.rightButton} ${activeComponent === 'Transfer' ? styles.activeButton : ''}`}
+          onClick={() => setActiveComponent('Transfer')}
+        >
+          Transferir
         </button>
       </div>
     </div>

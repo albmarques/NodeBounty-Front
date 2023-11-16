@@ -78,6 +78,14 @@ const handleInputChange = (event) => {
     setValue('valor', numericValue); 
     event.target.value = formattedValue; 
   };*/
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value.replace(/\D/g, ''); 
+    const numericValue = parseFloat(inputValue / 100).toFixed(2); 
+    
+    setValue('valor', numericValue); 
+    event.target.value = numericValue; 
+  };
   
 
   return (
@@ -93,7 +101,7 @@ const handleInputChange = (event) => {
               <input
                 className={styles.value}
                 {...register('valor')}
-                //onChange={handleInputChange}
+                onChange={handleInputChange}
                 placeholder="R$0,00"
               />
               
