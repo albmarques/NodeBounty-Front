@@ -91,11 +91,15 @@ const handleInputChange = (event) => {
   return (
     <div className={`mt-5 ${styles.mainContainer}`}>
       <h1 className=''>Depositar</h1>
+      {dadosConta.saldoConta && (
       <div class="row mt-4">
         <div class="col-12">
           <div className={styles.withdrawContainer}>
             <div className={styles.font}>Saldo</div>
-            <div className={styles.font}>R$ {dadosConta.saldoConta}</div>
+            <div className={styles.font}>{dadosConta.saldoConta.toLocaleString('default', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}</div>
             <div className={styles.questionValue}>Informe o valor do depósito a ser efetuado:</div>
             <form onSubmit={handleSubmit(handleDepositar)}>
               <input
@@ -115,6 +119,7 @@ const handleInputChange = (event) => {
           </div>
         </div>
       </div>
+            )}
       {ToastComponents}
     </div>
   );
