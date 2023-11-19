@@ -36,3 +36,31 @@
 .balance > p {
   font-size: 1rem;
 }
+
+.partners {
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+  border-top: 3px solid var(--blue-400);
+}
+.partners > p {
+  font-size: 1rem;
+  color: var(--blue-200);
+}
+.partners ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  padding: 0px;
+}
+.partners ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue-600);
+  padding: 1.25rem;
+  border-radius: 8px;
+}
+.partners ul li span {
+  text-align: center;
+}

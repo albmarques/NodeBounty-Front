@@ -45,6 +45,51 @@ export function PrivateHome() {
     loadAccountData()
   }, [loadAccountData])
 
+  const parceiros = {
+    Beauty: [
+      {
+        nome: 'MAC',
+        conta: '97126063061062518244',
+      },
+      {
+        nome: 'MakeB',
+        conta: '12345678901234567890',
+      },
+      {
+        nome: 'Vult',
+        conta: '23456789012345678901',
+      },
+    ],
+    Tech: [
+      {
+        nome: 'Kabum',
+        conta: '34567890123456789012',
+      },
+      {
+        nome: 'Pichau',
+        conta: '45678901234567890123',
+      },
+      {
+        nome: 'TeraByte Shop',
+        conta: '56789012345678901234',
+      },
+    ],
+    Health: [
+      {
+        nome: 'Growth',
+        conta: '67890123456789012345',
+      },
+      {
+        nome: 'OficialFarma',
+        conta: '78901234567890123456',
+      },
+      {
+        nome: 'Drogasil',
+        conta: '89012345678901234567',
+      },
+    ],
+  }
+
   async function handleResgatar() {
     try {
       await api.post('/transacoes/resgatar')
@@ -74,6 +119,7 @@ export function PrivateHome() {
           </div>
           <h1>Bem vindo, {dadosConta.cliente.nome}</h1>
         </div>
+
         <div className={styles.balance}>
           <strong>
             Saldo:{' '}
@@ -92,6 +138,22 @@ export function PrivateHome() {
           </p>
           <Button titulo="Resgatar cashback" onClick={handleResgatar} />
         </div>
+
+        <section className={styles.partners}>
+          <h2>Parceiros do seu plano:</h2>
+          <p>
+            Ganhe cashback de {dadosConta.plano.porcentagemCashback}% ao
+            realizar compras em nossos parceiros
+          </p>
+          <ul className={styles.partnersList}>
+            {parceiros[dadosConta.plano.idPlano].map((item) => (
+              <li key={item.conta}>
+                <strong>{item.nome}</strong>
+                <span>Número conta: {item.conta}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
 
       {ToastComponents}
