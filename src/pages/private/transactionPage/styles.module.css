@@ -103,7 +103,21 @@
       min-width: 8.0rem;
     }
   }
+ 
+
+  .largeButton{
+    background-color: #234149;
+    padding: 1rem 16.60rem;
+  border-radius: 7px;
+  border: 1px solid var(--white);
+  font-size: 1.25rem;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 12.5rem;
+  transition: 0.3s;
+  color: white;
+  }
   .activeButton {
     border-top: 5px solid white;
   }
-  
