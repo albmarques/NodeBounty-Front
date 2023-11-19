@@ -7,7 +7,7 @@ import { api } from '@lib/api';
 import { useToast } from '@hooks/useToast';
 import { AppError } from '@utils/AppError';
 import { Loading } from '@components/Loading'
-
+import styles from './styles.module.css';
 
 
 export function Withdraw() {

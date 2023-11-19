@@ -1,4 +1,22 @@
 import styles from './styles.module.css';
+import { api } from '@lib/api.js'
+import { useEffect, useState } from 'react'
+/*
+useEffect(() => {
+    async function buscarDadosTransacao() {
+      try {
+        setIsLoading(true)
+        const { data } = await api.get('/transacoes')
+        setDadosTransacao(data)
+        setIsLoading(false)
+      } catch (error) {
+        alert('Um erro ocorreu')
+        console.log(error)
+      }
+    }
+    buscarDadosTransacao()
+  }, [])
+*/
 export function Extract() {
     return (
     <div className={`mt-5 ${styles.mainContainer}`}>
