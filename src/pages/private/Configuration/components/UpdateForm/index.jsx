@@ -11,7 +11,7 @@ import { authContext } from '@contexts/AuthContext.jsx'
 import { Loading } from '@components/Loading'
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
-import styles from './UpdateForm.module.css'
+import styles from './styles.module.css'
 
 const schema = z.object({
   nome: z

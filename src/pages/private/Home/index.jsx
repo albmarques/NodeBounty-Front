@@ -83,13 +83,13 @@ export function PrivateHome() {
             })}
           </strong>
           <br />
-          <strong>
+          <p>
             Valor Cashback disponível:{' '}
             {dadosConta.cashbackConta.toLocaleString('default', {
               style: 'currency',
               currency: 'BRL',
             })}
-          </strong>
+          </p>
           <Button titulo="Resgatar cashback" onClick={handleResgatar} />
         </div>
       </main>
