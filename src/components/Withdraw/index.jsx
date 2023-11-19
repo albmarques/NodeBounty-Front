@@ -6,14 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@lib/api';
 import { useToast } from '@hooks/useToast';
 import { AppError } from '@utils/AppError';
+import { Loading } from '@components/Loading'
 
-import styles from './styles.module.css';
+
 
 export function Withdraw() {
   const [dadosConta, setDadosConta] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-
+  console.log(dadosConta.saldoConta);
   const { showToast, ToastComponents } = useToast();
 
   const schema = z.object({
@@ -94,10 +95,11 @@ export function Withdraw() {
   };
   
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className={`mt-5 ${styles.mainContainer}`}>
       <h1 className=''>Sacar</h1>
-      {dadosConta.saldoConta && (
         <div className="row mt-4">
           <div className="col-12">
             <div className={styles.withdrawContainer}>
@@ -122,12 +124,11 @@ export function Withdraw() {
                     {errors.valor.message}
                   </p>
                 )}
-                <input type="submit" className={styles.button} value="Sacar" />
+                <input type="submit" className={styles.button}  disabled={dadosConta.saldoConta === 0} value="Sacar" />
               </form>
             </div>
           </div>
         </div>
-      )}
       {ToastComponents}
     </div>
   );

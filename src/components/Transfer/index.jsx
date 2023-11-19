@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@lib/api';
 import { useToast } from '@hooks/useToast';
 import { AppError } from '@utils/AppError';
+import { Loading } from '@components/Loading'
 const schema = z.object({
   valor: z.coerce.number().min(0.01, 'O valor mínimo para depósito é de 1 centavo'),
   numeroConta: z
@@ -82,10 +83,11 @@ export function Transfer() {
     event.target.value = numericValue;
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className={`mt-5 ${styles.mainContainer}`}>
       <h1 className=''>Transferir</h1>
-      {dadosConta.saldoConta && (
         <div className="row mt-4">
           <div className="col-12">
             <div className={styles.withdrawContainer}>
@@ -122,12 +124,11 @@ export function Transfer() {
                     {errors.valor.message}
                   </p>
                 )}
-                <input type="submit" className={styles.button} value="Transferir" />
+                <input type="submit" className={styles.button} value="Transferir" disabled={dadosConta.saldoConta === 0} />
               </form>
             </div>
           </div>
         </div>
-      )}
       {ToastComponents}
     </div>
   );

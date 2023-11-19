@@ -1,0 +1,64 @@
+.mainContainer {
+    margin-left: 250px; /* Margem esquerda fixa para telas maiores */
+  }
+  
+  @media (max-width: 1200px) {
+    .mainContainer {
+      margin-left: 100px; /* Remover a margem esquerda em telas menores */
+    }
+  }
+  
+  @media (max-width: 1000px) {
+    .mainContainer {
+      margin-left: 50px; /* Remover a margem esquerda em telas menores */
+    }
+  }
+  
+  /* Use uma media query para ajustar a margem em telas menores */
+  @media (max-width: 900px) {
+    .mainContainer {
+      margin-left: 0; /* Remover a margem esquerda em telas menores */
+    }
+  }
+
+.extrato {
+    width: 80%;
+    max-width: 600px;
+    background-color: #234149;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color: #234149;
+    padding: 10px 50px 0 50px; /* Margem: superior, direita, inferior, esquerda */    
+    width: 100%;
+    
+  }
+
+  .transacao {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+
+  .transacao:last-child {
+    border-bottom: none;
+  }
+
+  .data {
+    font-weight: bold;
+  }
+
+  .descricao {
+    margin-top: 5px;
+  }
+
+  .valor {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+
+  .saldo {
+    color: #27ae60;
+    font-weight: bold;
+    margin-top: 20px;
+  }

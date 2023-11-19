@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '@lib/api';
 import { useToast } from '@hooks/useToast';
 import { AppError } from '@utils/AppError';
-
+import { Loading } from '@components/Loading'
 
 const schema = z.object({
   valor: z.coerce.number().min(0.01, 'O valor mínimo para depósito é de 1 centavo'),
@@ -88,10 +88,11 @@ const handleInputChange = (event) => {
   };
   
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className={`mt-5 ${styles.mainContainer}`}>
       <h1 className=''>Depositar</h1>
-      {dadosConta.saldoConta && (
       <div class="row mt-4">
         <div class="col-12">
           <div className={styles.withdrawContainer}>
@@ -119,7 +120,6 @@ const handleInputChange = (event) => {
           </div>
         </div>
       </div>
-            )}
       {ToastComponents}
     </div>
   );
