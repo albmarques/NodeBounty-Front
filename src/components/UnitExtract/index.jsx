@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './styles.module.css';
-import { api } from '@lib/api.js';
 import dayjs from 'dayjs';
-import { Loading } from '@components/Loading';
 import jsPDF from 'jspdf';
 import font from "@assets/inter.ttf";
 import fontBold from "@assets/inter-Bold.ttf";
 import nodeimage from "@assets/logo-decorator.png";
-import { Sticker } from 'phosphor-react';
+import pdfButton from "@assets/pdf-button.svg";
+import WithdrawIcon from "@assets/withdraw.svg";
+import DepositIcon from "@assets/deposit.svg";
+import TransferIcon from "@assets/transfer.svg";
 
 export function UnitExctract({ data, owner }) {
   const generatePDF = () => {
@@ -34,18 +35,38 @@ export function UnitExctract({ data, owner }) {
     pdf.setFont(font);
 
     pdf.text(`Data da Transação: ${dayjs(data.transacao.dataTransacao).format('DD/MM/YYYY')}`, 20, 70);
-    pdf.text(`Descrição: ${data.transacao.emissor === null
+    pdf.setFont(fontBold);
+
+    pdf.text(` ${data.transacao.emissor === null
       ? 'Depósito'
       : data.transacao.receptor === null
         ? 'Saque'
         : 'Transferência entre contas'}`, 20, 80);
+    pdf.setFont(font);
 
     if (data.transacao.emissor && data.transacao.receptor) {
       pdf.text(`Enviada por: ${data.transacao.emissor.cliente.nome}`, 20, 110);
-      pdf.text(`Recebida por: ${data.transacao.receptor.cliente.nome}`, 20, 120);
+      pdf.text(`Conta: ${data.transacao.emissor.numeroConta}`, 20, 120);
+      pdf.text(`CPF: ${formatarCPF(data.transacao.emissor.cliente.cpf)}`, 20, 130);
+
+      pdf.text(`Recebida por: ${data.transacao.receptor.cliente.nome}`, 20, 150);
+      pdf.text(`Conta: ${data.transacao.receptor.numeroConta}`, 20, 160);
+      pdf.text(`CPF: ${formatarCPF(data.transacao.receptor.cliente.cpf)}`, 20, 180);
+    } else {
+      // Adiciona informações de número de conta e CPF para saques e depósitos
+      if (data.transacao.emissor === null) {
+        // Depósito
+        pdf.text(`Conta: ${data.transacao.receptor.numeroConta}`, 20, 110);
+        pdf.text(`CPF: ${formatarCPF(data.transacao.receptor.cliente.cpf)}`, 20, 120);
+      } else {
+        // Saque
+        pdf.text(`Conta: ${data.transacao.emissor.numeroConta}`, 20, 110);
+        pdf.text(`CPF: ${formatarCPF(data.transacao.emissor.cliente.cpf)}`, 20, 120);
+      }
     }
 
-    pdf.text(`Valor: ${formatarValor(data.transacao.valorTransacao)}`, 20, 130);
+    pdf.setFontSize(32);
+    pdf.text(`Valor: ${formatarValor(data.transacao.valorTransacao)}`, 20, 210);
 
     // Adiciona a imagem ao canto inferior direito
     const imageWidth = 50;
@@ -63,16 +84,38 @@ export function UnitExctract({ data, owner }) {
     });
   }
 
+  function formatarCPF(cpf) {
+    // Adiciona asteriscos aos primeiros 3 dígitos e aos últimos 2 dígitos do CPF
+    const cpfAsteriscos = cpf.replace(/^(.{3})(.*)(.{2})$/, (_, first, middle, last) => {
+      const asteriscos = first.replace(/./g, '*');
+      const ultimosDigitos = last.replace(/./g, '*');
+      return `${asteriscos}${middle}${ultimosDigitos}`;
+    });
+
+    return cpfAsteriscos;
+  }
+
+  const getTransactionIcon = () => {
+    if (data.transacao.emissor === null) {
+      return <img className={styles.svg} src={DepositIcon} alt="Ícone de Depósito" />;
+    } else if (data.transacao.receptor === null) {
+      return <img className={styles.svg} src={WithdrawIcon} alt="Ícone de Saque" />;
+    } else {
+      return <img className={styles.svg} src={TransferIcon} alt="Ícone de Transferência" />;
+    }
+  };
+
   return (
     <div className={styles.transacaoContainer}>
       <div className={styles.transacao}>
-        <div className={styles.data}>{dayjs(data.transacao.dataTransacao).format('DD/MM/YYYY')}</div>
+        <div className={styles.data}>{dayjs(data.transacao.dataTransacao).format('DD/MM/YYYY')} </div>
         <div className={styles.descricao}>
+          {getTransactionIcon()}
           {data.transacao.emissor === null
-            ? 'Depósito'
+            ? `Depósito`
             : data.transacao.receptor === null
-              ? 'Saque'
-              : 'Transferência'}
+            ? 'Saque'
+            : 'Transferência'}
           {data.transacao.emissor && data.transacao.receptor && (
             <>
               {data.transacao.emissor.cliente.idCliente === owner && (
@@ -84,7 +127,11 @@ export function UnitExctract({ data, owner }) {
             </>
           )}
         </div>
-        <div className={styles.valor}>{formatarValor(data.transacao.valorTransacao)}<button className={styles.btn} onClick={generatePDF}>Gerar comprovante</button></div>
+        <div className={styles.box}>
+          <div className={styles.valor}>{formatarValor(data.transacao.valorTransacao)}</div>
+          <img className={styles.pdf_svg} src={pdfButton} alt="Botão PDF" onClick={generatePDF} />
+          <div className={styles.tooltip}>Clique para gerar PDF</div>
+        </div>
       </div>
     </div>
   );
