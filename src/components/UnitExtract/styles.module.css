@@ -1,0 +1,33 @@
+
+
+  .transacao {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+
+  .transacao:last-child {
+    border-bottom: none;
+  }
+
+  .data {
+    font-weight: bold;
+  }
+
+  .descricao {
+    margin-top: 5px;
+  }
+
+  .valor {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+
+  .saldo {
+    color: #27ae60;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+.btn{
+  text-align: right; /* Alinha o conteúdo à direita */
+  }
