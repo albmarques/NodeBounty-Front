@@ -15,7 +15,6 @@ export function UnitExctract({ data, owner }) {
     const pdf = new jsPDF();
     pdf.addFont(fontBold, fontBold, 'normal');
 
-    // Defina a fonte para o documento
     pdf.setFont(fontBold);
     pdf.setFontSize(30);
 
@@ -51,7 +50,7 @@ export function UnitExctract({ data, owner }) {
 
       pdf.text(`Recebida por: ${data.transacao.receptor.cliente.nome}`, 20, 150);
       pdf.text(`Conta: ${data.transacao.receptor.numeroConta}`, 20, 160);
-      pdf.text(`CPF: ${formatarCPF(data.transacao.receptor.cliente.cpf)}`, 20, 180);
+      pdf.text(`CPF: ${formatarCPF(data.transacao.receptor.cliente.cpf)}`, 20, 170);
     } else {
       // Adiciona informações de número de conta e CPF para saques e depósitos
       if (data.transacao.emissor === null) {
@@ -78,11 +77,30 @@ export function UnitExctract({ data, owner }) {
   };
 
   function formatarValor(number) {
-    return number.toLocaleString('default', {
+    const valorFormatado = number.toLocaleString('default', {
       style: 'currency',
       currency: 'BRL',
     });
+    return valorFormatado;
   }
+
+
+
+  function formatarValorSignal(number) {
+    const valorFormatado = number.toLocaleString('default', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+  
+    if (data?.transacao?.emissor === null || data?.transacao?.receptor?.cliente?.idCliente === owner) {
+      // Deposit
+      return { value: `+${valorFormatado}`, className: styles.valorGreen };
+    } else if (data?.transacao?.receptor === null || data?.transacao?.emissor?.cliente?.idCliente === owner) {
+      // Withdrawal
+      return { value: `-${valorFormatado}`, className: styles.valorRed };
+    } 
+  }
+  
 
   function formatarCPF(cpf) {
     // Adiciona asteriscos aos primeiros 3 dígitos e aos últimos 2 dígitos do CPF
@@ -128,7 +146,9 @@ export function UnitExctract({ data, owner }) {
           )}
         </div>
         <div className={styles.box}>
-          <div className={styles.valor}>{formatarValor(data.transacao.valorTransacao)}</div>
+        <div className={`${styles.valor} ${formatarValorSignal(data.transacao.valorTransacao).className}`}>
+  {formatarValorSignal(data.transacao.valorTransacao).value}
+</div>
           <img className={styles.pdf_svg} src={pdfButton} alt="Botão PDF" onClick={generatePDF} />
           <div className={styles.tooltip}>Clique para gerar PDF</div>
         </div>

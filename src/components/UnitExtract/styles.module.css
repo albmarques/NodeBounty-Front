@@ -6,7 +6,7 @@
   }
 
   .transacao:last-child {
-    margin-top: 1.5rem;
+    margin-top: 0.8rem;
     border-bottom: none;
   }
 
@@ -21,13 +21,25 @@
     display: flex;
   }
 
-  .valor {
+  .valorGreen {
     margin-top: 5px;
     font-weight: bold;
       color: #27ae60;
       width: 200rem;
   }
 
+  .valorRed {
+    margin-top: 5px;
+    font-weight: bold;
+      color: #ff7777;
+      width: 200rem;
+  }
+  .valor {
+    margin-top: 5px;
+    font-weight: bold;
+      width: 200rem;
+      
+  }
 .box{
   display: flex;
 }
@@ -40,8 +52,8 @@
   }
 
   .svg{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     filter: invert(1);
   }
   .pdf_svg{

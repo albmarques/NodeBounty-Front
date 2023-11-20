@@ -24,6 +24,7 @@
 .extrato {
     width: 80%;
     max-width: 600px;
+    min-height: 600px;
     background-color: #234149;
     padding: 20px;
     border-radius: 8px;
@@ -107,4 +108,9 @@
     color: #27ae60;
     font-weight: bold;
     margin-top: 20px;
+  }
+
+  .alert{
+    font-size: 1.6rem;
+    margin-top: 200px;
   }

@@ -8,13 +8,13 @@ import { UnitExctract } from '@components/UnitExtract';
 
 
 export function Extract() {
-  const [filtro, setFiltro] = useState(''); 
+  const [filtro, setFiltro] = useState('');
   const navigate = useNavigate();
   const [dadosConta, setDadosConta] = useState({});
   const [dadosTransacao, setDadosTransacao] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  
+
   const loadAccountData = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -71,16 +71,20 @@ export function Extract() {
       <h1 className=''>Extrato</h1>
       {isLoading ? (
         <Loading />
-        
+
       ) : (
         <div className={styles.extrato}>
-
+          {dadosTransacao.length === 0 && (
+            <div className={styles.alert}>Não há histórico de transações realizadas</div>
+          )}
           {dadosTransacao.map((item) => (
             <div key={item.id} className={`${styles.transacao}`}>
-              
-              <UnitExctract key={item.transacao.idTransacao} data={item} owner={dadosConta.cliente.idCliente}/>
+              <UnitExctract key={item.transacao.idTransacao} data={item} owner={dadosConta.cliente.idCliente} />
             </div>
-          ))}        </div>
+          ))}
+
+
+        </div>
       )}
     </div>
   );
