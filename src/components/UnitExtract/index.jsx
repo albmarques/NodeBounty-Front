@@ -140,7 +140,7 @@ export function UnitExctract({ data, owner }) {
                 <> enviada para {data.transacao.receptor.cliente.nome}</>
               )}
               {data.transacao.receptor.cliente.idCliente === owner && (
-                <> recebida por {data.transacao.emissor.cliente.nome}</>
+                <> recebida de {data.transacao.emissor.cliente.nome}</>
               )}
             </>
           )}
